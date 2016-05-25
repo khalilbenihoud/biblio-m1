@@ -15,4 +15,8 @@ BibliothequeBundle\Entity\Auteur:
         prenom:
             type: string
             length: 255
+    oneToMany:
+        ecrit:
+            targetEntity: Livre
+            mappedBy: ecritPar
     lifecycleCallbacks: {  }
