@@ -1,0 +1,11 @@
+BibliothequeBundle\Entity\Etagere:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\EtagereRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }
