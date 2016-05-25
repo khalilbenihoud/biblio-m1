@@ -1,0 +1,3 @@
+bibliotheque_homepage:
+    path:     /
+    defaults: { _controller: BibliothequeBundle:Default:index }
