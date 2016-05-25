@@ -1,0 +1,19 @@
+BibliothequeBundle\Entity\Archive:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\ArchiveRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateretour:
+            type: string
+            length: 255
+        idinscrit:
+            type: integer
+        idexemplaire:
+            type: integer
+    lifecycleCallbacks: {  }
