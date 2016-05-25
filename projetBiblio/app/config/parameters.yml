@@ -1,12 +1,13 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: 127.0.0.1
+    database_driver: pdo_mysql
+    database_host: localhost
     database_port: null
-    database_name: symfony
-    database_user: root
-    database_password: null
+    database_name: biblio
+    database_user: biblio
+    database_password: biblio
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: localhost
     mailer_user: null
     mailer_password: null
     secret: f7f0271ca7fc13b0d7117904bb2158dc5c0af8ed
