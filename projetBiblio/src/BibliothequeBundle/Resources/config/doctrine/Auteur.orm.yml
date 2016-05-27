@@ -1,0 +1,22 @@
+BibliothequeBundle\Entity\Auteur:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\AuteurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+    oneToMany:
+        ecrit:
+            targetEntity: Livre
+            mappedBy: ecritPar
+    lifecycleCallbacks: {  }
