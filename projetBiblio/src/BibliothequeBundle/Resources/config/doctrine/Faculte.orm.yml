@@ -1,0 +1,14 @@
+BibliothequeBundle\Entity\Faculte:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\FaculteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        cycle:
+            type: integer
+    lifecycleCallbacks: {  }
