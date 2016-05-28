@@ -1,0 +1,18 @@
+BibliothequeBundle\Entity\Auteur:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\AuteurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomAuteur:
+            type: string
+            length: '20'
+        prenomAuteur:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }

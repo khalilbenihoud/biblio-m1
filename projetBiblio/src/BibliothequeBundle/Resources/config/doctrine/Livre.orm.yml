@@ -1,0 +1,18 @@
+BibliothequeBundle\Entity\Livre:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\LivreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titreLivre:
+            type: string
+            length: '50'
+        noticeLivre:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

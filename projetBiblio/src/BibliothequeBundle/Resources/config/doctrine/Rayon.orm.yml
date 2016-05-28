@@ -1,0 +1,15 @@
+BibliothequeBundle\Entity\Rayon:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\RayonRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        designationRayon:
+            type: string
+            length: '20'
+    lifecycleCallbacks: {  }

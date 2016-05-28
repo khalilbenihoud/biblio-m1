@@ -1,0 +1,15 @@
+BibliothequeBundle\Entity\Exemplaire:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\ExemplaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        numeroExemplaire:
+            type: string
+            length: '30'
+    lifecycleCallbacks: {  }

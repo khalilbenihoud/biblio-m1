@@ -1,0 +1,15 @@
+BibliothequeBundle\Entity\Theme:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\ThemeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        descriptionTheme:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

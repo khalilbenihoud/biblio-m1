@@ -1,0 +1,16 @@
+BibliothequeBundle\Entity\Emprunter:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\EmprunterRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateDebut:
+            type: datetime
+        dateFin:
+            type: datetime
+    lifecycleCallbacks: {  }

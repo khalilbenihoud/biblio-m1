@@ -1,0 +1,14 @@
+BibliothequeBundle\Entity\Reserver:
+    type: entity
+    table: null
+    repositoryClass: BibliothequeBundle\Repository\ReserverRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateReservation:
+            type: datetime
+    lifecycleCallbacks: {  }
