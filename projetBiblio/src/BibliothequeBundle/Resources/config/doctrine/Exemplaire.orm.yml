@@ -12,4 +12,24 @@ BibliothequeBundle\Entity\Exemplaire:
         numeroExemplaire:
             type: string
             length: '30'
+    manyToOne:
+        livre:
+            targetEntity: Livre
+            inversedBy: exemplaires
+            cascade: [ persist ]
+        etagere:
+            targetEntity: Etagere
+            inversedBy: exemplaires_ranges
+            cascade: [ persist ]
+    oneToMany:
+        emprunter:
+            targetEntity: Emprunter
+            mappedBy: exemplaire
+            cascade: [ persist ]
+            orphanRemoval: true
+        reserver:
+            targetEntity: Reserver
+            mappedBy: livre
+            cascade: [ persist ]
+            orphanRemoval: true
     lifecycleCallbacks: {  }

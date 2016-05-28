@@ -51,5 +51,50 @@ class Faculte
     {
         return $this->designationFaculte;
     }
-}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $etudiants;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->etudiants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add etudiant
+     *
+     * @param \BibliothequeBundle\Entity\Lecteur $etudiant
+     *
+     * @return Faculte
+     */
+    public function addEtudiant(\BibliothequeBundle\Entity\Lecteur $etudiant)
+    {
+        $this->etudiants[] = $etudiant;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etudiant
+     *
+     * @param \BibliothequeBundle\Entity\Lecteur $etudiant
+     */
+    public function removeEtudiant(\BibliothequeBundle\Entity\Lecteur $etudiant)
+    {
+        $this->etudiants->removeElement($etudiant);
+    }
+
+    /**
+     * Get etudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtudiants()
+    {
+        return $this->etudiants;
+    }
+}

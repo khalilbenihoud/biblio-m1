@@ -110,4 +110,3 @@ class Archivage
         return $this->dateRetour;
     }
 }
-

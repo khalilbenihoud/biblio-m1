@@ -12,4 +12,9 @@ BibliothequeBundle\Entity\Faculte:
         designationFaculte:
             type: string
             length: 255
+    oneToMany:
+        etudiants:
+            targetEntity: Lecteur
+            mappedBy: faculte
+            orphanRemoval: true
     lifecycleCallbacks: {  }

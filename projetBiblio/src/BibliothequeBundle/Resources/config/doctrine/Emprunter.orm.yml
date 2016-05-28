@@ -13,4 +13,19 @@ BibliothequeBundle\Entity\Emprunter:
             type: datetime
         dateFin:
             type: datetime
+    manyToOne:
+        exemplaire:
+            targetEntity: Exemplaire
+            inversedBy: emprunter
+            joinColumn:
+                name: id_exemplaire
+                referencedColumnName: id
+                nullable: false
+        emprunteur:
+            targetEntity: Lecteur
+            inversedBy: emprunter
+            joinColumn:
+                name: id_lecteur
+                referencedColumnName: id
+                nullable: false
     lifecycleCallbacks: {  }

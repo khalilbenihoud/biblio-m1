@@ -11,4 +11,19 @@ BibliothequeBundle\Entity\Reserver:
     fields:
         dateReservation:
             type: datetime
+    manyToOne:
+        livre:
+            targetEntity: Exemplaire
+            inversedBy: reserver
+            joinColumn:
+                name : id_livre
+                referencedColumnName: id
+                nullable: FALSE
+        lecteur:
+            targetEntity: Lecteur
+            inversedBy: reserver
+            joinColumn:
+                name: id_lecteur
+                referencedColumnNam: id
+                nullable: FALSE
     lifecycleCallbacks: {  }

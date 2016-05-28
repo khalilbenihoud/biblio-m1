@@ -12,4 +12,14 @@ BibliothequeBundle\Entity\Rayon:
         designationRayon:
             type: string
             length: '20'
+    oneToMany:
+        etageres:
+            targetEntity: Etagere
+            mappedBy: rayon
+            orphanRemoval: true
+    manyToOne:
+        theme_rayon:
+            targetEntity: Theme
+            inversedBy: rayon
+            cascade : [ persist ]
     lifecycleCallbacks: {  }

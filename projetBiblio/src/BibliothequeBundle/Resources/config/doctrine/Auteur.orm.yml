@@ -15,4 +15,8 @@ BibliothequeBundle\Entity\Auteur:
         prenomAuteur:
             type: string
             length: '50'
-    lifecycleCallbacks: {  }
+    manyToMany:
+        livres_ecrits:
+            targetEntity: Livre
+            mappedBy: auteur
+            orphanRemoval: true

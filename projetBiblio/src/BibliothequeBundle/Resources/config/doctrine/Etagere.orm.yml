@@ -11,4 +11,14 @@ BibliothequeBundle\Entity\Etagere:
     fields:
         numeroEtagere:
             type: integer
+    oneToMany:
+        exemplaires_ranges:
+            targetEntity: Exemplaire
+            mappedBy: etagere
+            orphanRemoval: true
+    manyToOne:
+        rayon:
+            targetEntity: Rayon
+            inversedBy: etageres
+            cascade: [ persist ]
     lifecycleCallbacks: {  }

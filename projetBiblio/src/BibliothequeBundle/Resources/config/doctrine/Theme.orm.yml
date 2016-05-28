@@ -12,4 +12,14 @@ BibliothequeBundle\Entity\Theme:
         descriptionTheme:
             type: string
             length: 255
+    oneToMany:
+        rayon:
+            targetEntity: Rayon
+            mappedBy: theme_rayon
+            orphanRemoval: true
+    manyToMany:
+        livre_theme:
+            targetEntity: Livre
+            mappedBy: livre
+            orphanRemoval: true
     lifecycleCallbacks: {  }

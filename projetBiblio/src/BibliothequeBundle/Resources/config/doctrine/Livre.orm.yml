@@ -15,4 +15,23 @@ BibliothequeBundle\Entity\Livre:
         noticeLivre:
             type: string
             length: 255
+    manyToMany:
+        auteur:
+            targetEntity: Auteur
+            inversedBy: livres_ecrits
+            cascade: [ persist ]
+        theme_livre:
+            targetEntity: Theme
+            inversedBy: livre_theme
+            cascade:  [ persist ]
+    oneToMany:
+        exemplaires:
+            targetEntity: Exemplaire
+            mappedBy: livre
+            orphanRemoval: true
+        reserver:
+            targetEntity: Reserver
+            mappedBy: livre
+            cascade: [ persist ]
+            orphanRemoval: true
     lifecycleCallbacks: {  }

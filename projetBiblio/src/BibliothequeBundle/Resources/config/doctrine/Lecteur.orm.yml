@@ -17,4 +17,20 @@ BibliothequeBundle\Entity\Lecteur:
             length: '50'
         cycleLecteur:
             type: integer
+    oneToMany:
+        reserver:
+            targetEntity: Reserver
+            mappedBy: lecteur
+            cascade: [ persist ]
+            orphanRemoval: true
+        emprunter:
+            targetEntity: Emprunter
+            mappedBy: emprunteur
+            cascade : [ persist ]
+            orphanRemoval: true
+    manyToOne:
+        faculte:
+            targetEntity: Faculte
+            inversedBy: etudiants
+            cascade: [ persist ]
     lifecycleCallbacks: {  }
