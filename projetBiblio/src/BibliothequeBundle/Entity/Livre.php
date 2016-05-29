@@ -246,4 +246,10 @@ class Livre
     {
         return $this->theme_livre;
     }
+
+    public function __toString()
+    {
+        return $this->getNoticeLivre().'-'.$this->getTitreLivre();
+    }
+
 }

@@ -126,4 +126,8 @@ class Auteur
     {
         return $this->livres_ecrits;
     }
+
+    public function __toString(){
+        return $this->getNomAuteur().'-'.$this->getPrenomAuteur();
+    }
 }

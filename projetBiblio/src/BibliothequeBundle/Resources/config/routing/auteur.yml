@@ -1,0 +1,24 @@
+auteur_index:
+    path:     /
+    defaults: { _controller: "BibliothequeBundle:Auteur:index" }
+    methods:  GET
+
+auteur_show:
+    path:     /{id}/show
+    defaults: { _controller: "BibliothequeBundle:Auteur:show" }
+    methods:  GET
+
+auteur_new:
+    path:     /new
+    defaults: { _controller: "BibliothequeBundle:Auteur:new" }
+    methods:  [GET, POST]
+
+auteur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BibliothequeBundle:Auteur:edit" }
+    methods:  [GET, POST]
+
+auteur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BibliothequeBundle:Auteur:delete" }
+    methods:  DELETE
