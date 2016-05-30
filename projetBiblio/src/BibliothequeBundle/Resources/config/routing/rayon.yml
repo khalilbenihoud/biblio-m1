@@ -1,0 +1,24 @@
+rayon_index:
+    path:     /
+    defaults: { _controller: "BibliothequeBundle:Rayon:index" }
+    methods:  GET
+
+rayon_show:
+    path:     /{id}/show
+    defaults: { _controller: "BibliothequeBundle:Rayon:show" }
+    methods:  GET
+
+rayon_new:
+    path:     /new
+    defaults: { _controller: "BibliothequeBundle:Rayon:new" }
+    methods:  [GET, POST]
+
+rayon_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BibliothequeBundle:Rayon:edit" }
+    methods:  [GET, POST]
+
+rayon_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BibliothequeBundle:Rayon:delete" }
+    methods:  DELETE
