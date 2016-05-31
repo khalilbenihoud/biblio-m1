@@ -5,6 +5,7 @@ namespace BibliothequeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ThemeType extends AbstractType
 {
@@ -15,7 +16,7 @@ class ThemeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descriptionTheme')
+            ->add('descriptionTheme' , TextType::class, array('label' => 'Thème : '))
             //->add('livre_theme')
         ;
     }

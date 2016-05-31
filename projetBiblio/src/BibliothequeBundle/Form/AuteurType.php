@@ -16,8 +16,8 @@ class AuteurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomAuteur', TextType::class, array('label' => 'nicolas c\'est le bosse ! :D'))
-            ->add('prenomAuteur')
+            ->add('nomAuteur', TextType::class, array('label' => 'Nom : '))
+            ->add('prenomAuteur', TextType::class, array('label' => 'Prénom : '))
             //->add('livres_ecrits')
         ;
     }

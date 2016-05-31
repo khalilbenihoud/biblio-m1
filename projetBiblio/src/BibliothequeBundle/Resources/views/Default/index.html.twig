@@ -1,1 +1,11 @@
-Hello World! 1er
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Projet Symfony</h1>
+
+    <a href="{{ path('livre_index') }}">Liste des livres</a>
+    <br />
+	<a href="{{ path('auteur_index') }}">Liste des auteurs</a>
+	<br />
+    <a href="{{ path('theme_index') }}">Liste des themes</a>
+{% endblock %}
