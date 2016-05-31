@@ -126,4 +126,9 @@ class Etagere
     {
         return $this->rayon;
     }
+
+    public function __toString()
+    {
+        return $this->getDesignationRayon().'-'.$this->get();
+    }
 }
