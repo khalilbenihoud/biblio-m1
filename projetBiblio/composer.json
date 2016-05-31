@@ -26,12 +26,7 @@
         "symfony/monolog-bundle": "^2.8",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0",
-		"jquery/jquery": "1.12.*",
-		"twbs/bootstrap": "3.3.*",
-        "oyejorge/less.php": "v1.7.0.10",
-		"braincrafted/bootstrap-bundle": "~2.0",
-		"leafo/lessphp": "dev-master"
+        "incenteev/composer-parameter-handler": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -70,18 +65,5 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    },
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "jquery/jquery",
-				"version": "1.12.0",
-				"dist": {
-					"url": "http://code.jquery.com/jquery-1.12.0.min.js",
-					"type": "file"
-				}
-			}
-		}
-	]
+    }
 }

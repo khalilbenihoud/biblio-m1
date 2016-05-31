@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Résultat de la recherche : </h1>
+
+    <table>
+        <thead>
+            <tr>
+				<th> </th>
+                <th>Nom </th>
+                <th>Prenom </th>
+                <th>Actions  </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td><a href="{{ path('auteur_show', { 'id': auteur.id }) }}"> </a></td>
+                <td>{{ auteur.nomAuteur }}</td>
+                <td>{{ auteur.prenomAuteur }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('auteur_show', { 'id': auteur.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('auteur_edit', { 'id': auteur.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('auteur_new') }}">Ajouter un auteur</a>
+    <a href="{{ path('auteur_search') }}">Rechercher un auteur</a>
+{% endblock %}
