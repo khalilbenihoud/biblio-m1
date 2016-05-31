@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Auteur creation</h1>
+    <h1>Création d'auteur</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Créer" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('auteur_index') }}">Back to the list</a>
+            <a href="{{ path('auteur_index') }}">Retour à la liste</a>
         </li>
     </ul>
 {% endblock %}

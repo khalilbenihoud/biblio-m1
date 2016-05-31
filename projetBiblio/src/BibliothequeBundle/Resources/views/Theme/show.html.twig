@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Theme</h1>
+    <h1>Theme :</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Id : </th>
                 <td>{{ theme.id }}</td>
             </tr>
             <tr>
-                <th>Descriptiontheme</th>
+                <th>Description :</th>
                 <td>{{ theme.descriptionTheme }}</td>
             </tr>
         </tbody>
@@ -18,14 +18,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('theme_index') }}">Back to the list</a>
+            <a href="{{ path('theme_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('theme_edit', { 'id': theme.id }) }}">Edit</a>
+            <a href="{{ path('theme_edit', { 'id': theme.id }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

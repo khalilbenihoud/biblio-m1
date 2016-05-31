@@ -4,6 +4,8 @@ namespace BibliothequeBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use BibliothequeBundle\Entity\Auteur;
 use BibliothequeBundle\Form\AuteurType;
@@ -82,7 +84,7 @@ class AuteurController extends Controller
             $em->persist($auteur);
             $em->flush();
 
-            return $this->redirectToRoute('auteur_edit', array('id' => $auteur->getId()));
+            return $this->redirectToRoute('auteur_show', array('id' => $auteur->getId()));
         }
 
         return $this->render('BibliothequeBundle:Auteur:edit.html.twig', array(
@@ -126,5 +128,49 @@ class AuteurController extends Controller
             ->getForm()
         ;
     }
+	
+	public function searchAction(Request $request)
+	{
+		$form = $this->createFormBuilder()
+			->add('search', TextType::class, array(
+				'required' => true,
+				'label'	=> 'Recherche : '
+				)
+			)
+			->add('Rechercher', SubmitType::class)
+			->getForm();
+		
+        $form->handleRequest($request);
+		
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $search = $data['search'];
+            
+			if (!empty($search) && strlen($search) >= 1)
+			{
+				return $this->redirect($this->get('router')->generate('auteur_search_result', array('search' => $search)));
+			}
+        }
+		
+        return $this->render('BibliothequeBundle:Auteur:search.html.twig', array('form'=>$form->createView()));
+	}
+	
+	public function search_resultAction($search)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository('BibliothequeBundle:Auteur');
+
+        $auteurs = $repo->createQueryBuilder('a')
+                    ->where('a.nomAuteur LIKE :search OR a.prenomAuteur LIKE :search')
+                    ->setParameter('search', '%'.$search.'%')
+                    ->getQuery()
+                    ->getResult();
+        return $this->render('BibliothequeBundle:Auteur:search_result.html.twig', array(
+            'auteurs' => $auteurs,
+        ));
+	}
 
 }
+
+

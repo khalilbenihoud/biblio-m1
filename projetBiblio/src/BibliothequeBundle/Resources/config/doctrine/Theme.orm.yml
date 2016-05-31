@@ -20,6 +20,6 @@ BibliothequeBundle\Entity\Theme:
     manyToMany:
         livre_theme:
             targetEntity: Livre
-            mappedBy: livre
+            mappedBy: theme_livre
             orphanRemoval: true
     lifecycleCallbacks: {  }

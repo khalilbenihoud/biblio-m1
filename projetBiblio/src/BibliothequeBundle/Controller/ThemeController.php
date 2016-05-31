@@ -82,7 +82,7 @@ class ThemeController extends Controller
             $em->persist($theme);
             $em->flush();
 
-            return $this->redirectToRoute('theme_edit', array('id' => $theme->getId()));
+            return $this->redirectToRoute('theme_show', array('id' => $theme->getId()));
         }
 
         return $this->render('BibliothequeBundle:Theme:edit.html.twig', array(
@@ -91,6 +91,7 @@ class ThemeController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+	
 
     /**
      * Deletes a Theme entity.

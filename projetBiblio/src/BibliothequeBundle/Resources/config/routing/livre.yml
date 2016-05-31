@@ -22,3 +22,13 @@ livre_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Livre:delete" }
     methods:  DELETE
+
+livre_search:
+    path:     /search
+    defaults: { _controller: "BibliothequeBundle:Livre:search" }
+    methods:  [GET, POST]
+
+livre_search_result:
+    path:     /search_result/{search}
+    defaults: { _controller: "BibliothequeBundle:Livre:search_result" }
+    methods:  GET

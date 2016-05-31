@@ -22,3 +22,13 @@ auteur_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Auteur:delete" }
     methods:  DELETE
+
+auteur_search:
+    path:     /search
+    defaults: { _controller: "BibliothequeBundle:Auteur:search" }
+    methods:  [GET, POST]
+
+auteur_search_result:
+    path:     /search_result/{search}
+    defaults: { _controller: "BibliothequeBundle:Auteur:search_result" }
+    methods:  GET

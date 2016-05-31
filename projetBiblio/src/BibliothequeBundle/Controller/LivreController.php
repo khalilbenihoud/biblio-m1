@@ -4,6 +4,8 @@ namespace BibliothequeBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use BibliothequeBundle\Entity\Livre;
 use BibliothequeBundle\Form\LivreType;
@@ -82,7 +84,7 @@ class LivreController extends Controller
             $em->persist($livre);
             $em->flush();
 
-            return $this->redirectToRoute('livre_edit', array('id' => $livre->getId()));
+            return $this->redirectToRoute('livre_show', array('id' => $livre->getId()));
         }
 
         return $this->render('BibliothequeBundle:Livre:edit.html.twig', array(
@@ -125,4 +127,48 @@ class LivreController extends Controller
             ->getForm()
         ;
     }
+	
+	public function searchAction(Request $request)
+	{
+		$form = $this->createFormBuilder()
+			->add('search', TextType::class, array(
+				'required' => true,
+				'label'	=> 'Recherche : '
+				)
+			)
+			->add('Rechercher', SubmitType::class)
+			->getForm();
+		
+        $form->handleRequest($request);
+		
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $search = $data['search'];
+            
+			if (!empty($search) && strlen($search) >= 1)
+			{
+				return $this->redirect($this->get('router')->generate('livre_search_result', array('search' => $search)));
+			}
+        }
+		
+        return $this->render('BibliothequeBundle:Livre:search.html.twig', array('form'=>$form->createView()));
+	}
+	
+	public function search_resultAction($search)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository('BibliothequeBundle:Livre');
+
+        $livres = $repo->createQueryBuilder('l')
+					->leftJoin('l.theme_livre', 't')
+					->leftJoin('l.auteur', 'a')
+                    ->where('l.titreLivre LIKE :search OR t.descriptionTheme LIKE :search OR a.nomAuteur LIKE :search OR a.prenomAuteur LIKE :search')
+                    ->setParameter('search', '%'.$search.'%')
+                    ->getQuery()
+                    ->getResult();
+        return $this->render('BibliothequeBundle:Livre:search_result.html.twig', array(
+            'livres' => $livres,
+        ));
+	}
 }

@@ -1,30 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Livre list</h1>
+    <h1>Liste des livres :</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titrelivre</th>
-                <th>Noticelivre</th>
+                <th>Référence</th>
+                <th>Titre</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for livre in livres %}
             <tr>
-                <td><a href="{{ path('livre_show', { 'id': livre.id }) }}">{{ livre.id }}</a></td>
-                <td>{{ livre.titreLivre }}</td>
-                <td>{{ livre.noticeLivre }}</td>
+                <td><a href="{{ path('livre_show', { 'id': livre.getId }) }}">#{{ livre.getId }}</a></td>
+                <td>{{ livre.getTitreLivre }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('livre_show', { 'id': livre.id }) }}">show</a>
+                            <a href="{{ path('livre_show', { 'id': livre.getId }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('livre_edit', { 'id': livre.id }) }}">edit</a>
+                            <a href="{{ path('livre_edit', { 'id': livre.getId }) }}">Editer</a>
                         </li>
                     </ul>
                 </td>
@@ -33,9 +31,7 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('livre_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('livre_new') }}">Ajouter un livre</a>
+	<br />
+	<a href="{{ path('livre_search') }}">Rechercher un livre</a>
 {% endblock %}

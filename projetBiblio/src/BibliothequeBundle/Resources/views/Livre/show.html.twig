@@ -1,35 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Livre</h1>
+    <h1>Livre référence #{{ livre.getId }}</h1>
 
     <table>
         <tbody>
-            <tr>
+            <!--<tr>
                 <th>Id</th>
-                <td>{{ livre.id }}</td>
+                <td>{{ livre.getId }}</td>
+            </tr>-->
+            <tr>
+                <th>Titre :</th>
+                <td>{{ livre.getTitreLivre }}</td>
             </tr>
             <tr>
-                <th>Titrelivre</th>
-                <td>{{ livre.titreLivre }}</td>
+                <th>Notice :</th>
+                <td>{{ livre.getNoticeLivre }}</td>
             </tr>
-            <tr>
-                <th>Noticelivre</th>
-                <td>{{ livre.noticeLivre }}</td>
-            </tr>
+			<tr>
+				<th>Auteurs :</th>
+				<td>
+					{% for auteur in livre.getAuteur %}
+						{{ auteur.getNomAuteur }} {{ auteur.getPrenomAuteur }}
+						<br /> 
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<th>Themes :</th>
+				<td>
+					{% for theme in livre.getThemeLivre %}
+						{{ theme.getDescriptionTheme }}
+						<br /> 
+					{% endfor %}
+				</td>
+			</tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('livre_index') }}">Back to the list</a>
+            <a href="{{ path('livre_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('livre_edit', { 'id': livre.id }) }}">Edit</a>
+            <a href="{{ path('livre_edit', { 'id': livre.getId }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
