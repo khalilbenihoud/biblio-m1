@@ -1,0 +1,24 @@
+reserver_index:
+    path:     /
+    defaults: { _controller: "BibliothequeBundle:Reserver:index" }
+    methods:  GET
+
+reserver_show:
+    path:     /{id}/show
+    defaults: { _controller: "BibliothequeBundle:Reserver:show" }
+    methods:  GET
+
+reserver_new:
+    path:     /new
+    defaults: { _controller: "BibliothequeBundle:Reserver:new" }
+    methods:  [GET, POST]
+
+reserver_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BibliothequeBundle:Reserver:edit" }
+    methods:  [GET, POST]
+
+reserver_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BibliothequeBundle:Reserver:delete" }
+    methods:  DELETE

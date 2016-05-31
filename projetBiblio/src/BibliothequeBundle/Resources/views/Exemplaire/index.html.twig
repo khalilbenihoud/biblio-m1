@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Exemplaire list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numeroexemplaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for exemplaire in exemplaires %}
+            <tr>
+                <td><a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}">{{ exemplaire.id }}</a></td>
+                <td>{{ exemplaire.numeroExemplaire }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('exemplaire_edit', { 'id': exemplaire.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exemplaire_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

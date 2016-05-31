@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rayon</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rayon.id }}</td>
+            </tr>
+            <tr>
+                <th>Designationrayon</th>
+                <td>{{ rayon.designationRayon }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rayon_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rayon list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Designationrayon</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rayon in rayons %}
+            <tr>
+                <td><a href="{{ path('rayon_show', { 'id': rayon.id }) }}">{{ rayon.id }}</a></td>
+                <td>{{ rayon.designationRayon }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rayon_show', { 'id': rayon.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rayon_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

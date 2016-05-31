@@ -1,3 +1,7 @@
+bibliotheque_homepage:
+    path:     /
+    defaults: { _controller: BibliothequeBundle:Default:index }
+
 bibliotheque_livre:
     resource: "@BibliothequeBundle/Resources/config/routing/livre.yml"
     prefix:   /livre
@@ -6,10 +10,35 @@ bibliotheque_auteur:
     resource: "@BibliothequeBundle/Resources/config/routing/auteur.yml"
     prefix:   /auteur
 
-bibliotheque_homepage:
-    path:     /
-    defaults: { _controller: BibliothequeBundle:Default:index }
-
 bibliotheque_theme:
     resource: "@BibliothequeBundle/Resources/config/routing/theme.yml"
     prefix:   /theme
+
+bibliotheque_exemplaire:
+    resource: "@BibliothequeBundle/Resources/config/routing/exemplaire.yml"
+    prefix:   /exemplaire
+
+bibliotheque_rayon:
+    resource: "@BibliothequeBundle/Resources/config/routing/rayon.yml"
+    prefix:   /rayon
+
+bibliotheque_etagere:
+    resource: "@BibliothequeBundle/Resources/config/routing/etagere.yml"
+    prefix:   /etagere
+
+bibliotheque_reserver:
+    resource: "@BibliothequeBundle/Resources/config/routing/reserver.yml"
+    prefix:   /reserver
+
+bibliotheque_lecteur:
+    resource: "@BibliothequeBundle/Resources/config/routing/lecteur.yml"
+    prefix:   /lecteur
+
+bibliotheque_faculte:
+    resource: "@BibliothequeBundle/Resources/config/routing/faculte.yml"
+    prefix:   /faculte
+
+bibliotheque_emprunter:
+    resource: "@BibliothequeBundle/Resources/config/routing/emprunter.yml"
+    prefix:   /emprunter
+

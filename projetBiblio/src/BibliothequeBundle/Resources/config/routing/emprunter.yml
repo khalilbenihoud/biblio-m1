@@ -1,0 +1,24 @@
+emprunter_index:
+    path:     /
+    defaults: { _controller: "BibliothequeBundle:Emprunter:index" }
+    methods:  GET
+
+emprunter_show:
+    path:     /{id}/show
+    defaults: { _controller: "BibliothequeBundle:Emprunter:show" }
+    methods:  GET
+
+emprunter_new:
+    path:     /new
+    defaults: { _controller: "BibliothequeBundle:Emprunter:new" }
+    methods:  [GET, POST]
+
+emprunter_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BibliothequeBundle:Emprunter:edit" }
+    methods:  [GET, POST]
+
+emprunter_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BibliothequeBundle:Emprunter:delete" }
+    methods:  DELETE

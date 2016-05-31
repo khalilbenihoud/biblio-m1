@@ -33,5 +33,7 @@ BibliothequeBundle\Entity\Livre:
             targetEntity: Reserver
             mappedBy: livre
             cascade: [ persist ]
+            joinColumn:
+                onDelete: cascade
             orphanRemoval: true
     lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+lecteur_index:
+    path:     /
+    defaults: { _controller: "BibliothequeBundle:Lecteur:index" }
+    methods:  GET
+
+lecteur_show:
+    path:     /{id}/show
+    defaults: { _controller: "BibliothequeBundle:Lecteur:show" }
+    methods:  GET
+
+lecteur_new:
+    path:     /new
+    defaults: { _controller: "BibliothequeBundle:Lecteur:new" }
+    methods:  [GET, POST]
+
+lecteur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BibliothequeBundle:Lecteur:edit" }
+    methods:  [GET, POST]
+
+lecteur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BibliothequeBundle:Lecteur:delete" }
+    methods:  DELETE
