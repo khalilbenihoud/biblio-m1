@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Faculte</h1>
+    <h1>détails de la Faculté</h1>
 
     <table>
         <tbody>
+
             <tr>
-                <th>Id</th>
-                <td>{{ faculte.id }}</td>
-            </tr>
-            <tr>
-                <th>Designationfaculte</th>
+                <th>Designation de la faculté</th>
                 <td>{{ faculte.designationFaculte }}</td>
             </tr>
         </tbody>
@@ -18,10 +15,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('faculte_index') }}">Back to the list</a>
+            <a href="{{ path('faculte_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}">Edit</a>
+            <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
