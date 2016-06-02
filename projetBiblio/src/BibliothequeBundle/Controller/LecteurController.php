@@ -125,4 +125,23 @@ class LecteurController extends Controller
             ->getForm()
         ;
     }
+
+   /*
+    * Action pour la Recherche d'inscrit par une partie de son nom
+    * *************************************************************
+    */
+    public function rechercherAction(Request $request)
+    {
+        $listeLecteurs="vide";
+        $m= $request->request->get('motchercher');
+        if($m) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $repository1 = $entityManager->getRepository('BibliothequeBundle:Lecteur');
+            $listeLecteurs = $repository1->findByNom($m);
+        }
+        return $this->render('BibliothequeBundle:Lecteur:View_rechercheParPartie.html.twig',
+            array('listeLecteurs' => $listeLecteurs,
+            ));
+
+    }
 }

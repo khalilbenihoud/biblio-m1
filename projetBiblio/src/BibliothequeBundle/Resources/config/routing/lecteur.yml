@@ -22,3 +22,7 @@ lecteur_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Lecteur:delete" }
     methods:  DELETE
+
+recherchermot:
+    path:     /reche
+    defaults: { _controller: "BibliothequeBundle:Lecteur:rechercher" }
