@@ -144,4 +144,17 @@ class LecteurController extends Controller
             ));
 
     }
+/*
+ * Action pour la situation d'un inscrit (prêts et réservation)
+ */
+    public function situationAction($id) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $lecteur = $entityManager->getRepository('BibliothequeBundle:Lecteur')
+            ->find($id);
+        $emprunter = $lecteur->getEmprunter();
+        $reserver =  $lecteur->getReserver();
+        return $this->render('BibliothequeBundle:Lecteur:situation.html.twig',array('emprunter'=>$emprunter,
+            'reserver'=>$reserver,
+            'lecteur'=>$lecteur));
+    }
 }

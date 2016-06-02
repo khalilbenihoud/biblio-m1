@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+             <h1>Situation du lecteur</h1></br>
+                <table border="1" cellpadding="3px">
+                    <tbody>
+                    <tr>
+                        <th>Nom Lecteur</th>
+                        <td>{{ lecteur.nomLecteur }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom Lecteur</th>
+                        <td>{{ lecteur.prenomLecteur }}</td>
+                    </tr>
+                    <tr>
+                        <th>Livre(s) prêté(s)</th>
+                        {% for emprunt in emprunter %}
+                        {% if  emprunt.dateDebut|date_modify("+40 day") < date()  %}
+                    <td style="color: darkred;">{{ emprunt.exemplaire.livre.titreLivre }}</td>
+
+                        {% else %}
+
+                        <td style="color: darkgreen;">{{ emprunt.exemplaire.livre.titreLivre }}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>Livre(s) reservé(s)</th>
+                        {% for reservation in reserver %}
+                            <td>{{ reservation.livre.livre.titreLivre }}</td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+
+
+{% endblock %}

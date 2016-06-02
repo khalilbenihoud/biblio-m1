@@ -26,3 +26,7 @@ lecteur_delete:
 recherchermot:
     path:     /reche
     defaults: { _controller: "BibliothequeBundle:Lecteur:rechercher" }
+
+situationpret:
+    path:     /{id}/situation
+    defaults: { _controller: "BibliothequeBundle:Lecteur:situation"}
