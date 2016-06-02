@@ -1,28 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Exemplaire list</h1>
+    <h1>Liste des exemplaires : </h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numeroexemplaire</th>
+                <th> </th>
+                <th>N° de l'exemplaire</th>
+                <th>Livre</th>
+                <th>Etagère</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for exemplaire in exemplaires %}
             <tr>
-                <td><a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}">{{ exemplaire.id }}</a></td>
+                <td><a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}"></a></td>
                 <td>{{ exemplaire.numeroExemplaire }}</td>
+                <td>{{ exemplaire.livre }}</td>
+                <td>{{ exemplaire.etagere }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}">show</a>
+                            <a href="{{ path('exemplaire_show', { 'id': exemplaire.id }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('exemplaire_edit', { 'id': exemplaire.id }) }}">edit</a>
+                            <a href="{{ path('exemplaire_edit', { 'id': exemplaire.id }) }}">Editer</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('exemplaire_delete', { 'id': exemplaire.id }) }}">Supprimer</a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +38,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('exemplaire_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('exemplaire_new') }}">Ajouter un exemplaire</a>
 {% endblock %}

@@ -129,5 +129,6 @@ class Rayon
 
     public function __toString()
     {
+        return '[D]'.$this->getDesignationRayon().' [T]'.$this->getThemeRayon();
     }
 }
