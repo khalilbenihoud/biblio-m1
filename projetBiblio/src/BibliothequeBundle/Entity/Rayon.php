@@ -126,4 +126,8 @@ class Rayon
     {
         return $this->theme_rayon;
     }
+
+    public function __toString()
+    {
+    }
 }

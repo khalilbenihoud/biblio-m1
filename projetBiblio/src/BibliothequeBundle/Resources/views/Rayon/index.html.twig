@@ -1,28 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Rayon list</h1>
+    <h1>Liste des rayons</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Designationrayon</th>
+                <th> </th>
+                <th>Désignation</th>
+                <th>Thème</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for rayon in rayons %}
             <tr>
-                <td><a href="{{ path('rayon_show', { 'id': rayon.id }) }}">{{ rayon.id }}</a></td>
+                <td><a href="{{ path('rayon_show', { 'id': rayon.id }) }}"></a></td>
                 <td>{{ rayon.designationRayon }}</td>
+                <td>{{ rayon.themeRayon }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('rayon_show', { 'id': rayon.id }) }}">show</a>
+                            <a href="{{ path('rayon_show', { 'id': rayon.id }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">edit</a>
+                            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">Editer</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rayon_delete', { 'id': rayon.id }) }}">Supprimer</a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +36,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('rayon_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('rayon_new') }}">Ajouter un rayon</a>
 {% endblock %}

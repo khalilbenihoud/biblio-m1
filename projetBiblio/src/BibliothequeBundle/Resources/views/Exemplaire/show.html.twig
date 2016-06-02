@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Exemplaire</h1>
+    <h1>Exemplaire n°{{ exemplaire.numeroExemplaire}} du livre {{ exemplaire.livre}}</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Id : </th>
                 <td>{{ exemplaire.id }}</td>
             </tr>
             <tr>
-                <th>Numeroexemplaire</th>
+                <th>Numéro : </th>
                 <td>{{ exemplaire.numeroExemplaire }}</td>
+            </tr>
+            <tr>
+                <th>Livre concerné : </th>
+                <td>{{ exemplaire.livre }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('exemplaire_index') }}">Back to the list</a>
+            <a href="{{ path('exemplaire_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('exemplaire_edit', { 'id': exemplaire.id }) }}">Edit</a>
+            <a href="{{ path('exemplaire_edit', { 'id': exemplaire.id }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
