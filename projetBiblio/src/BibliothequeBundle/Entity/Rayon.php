@@ -131,4 +131,14 @@ class Rayon
     {
         return '[D]'.$this->getDesignationRayon().' [T]'.$this->getThemeRayon();
     }
+
+    public function getLivreRayon()
+    {
+        $etageres = $this->getEtageres();
+        echo '<pre>';print_r($etageres);echo '</pre>';
+        // $exemplaire = array();
+        // foreach ($etageres as $key => $value) {
+        //     $exemplaire[] = $value;
+        // }
+    }
 }

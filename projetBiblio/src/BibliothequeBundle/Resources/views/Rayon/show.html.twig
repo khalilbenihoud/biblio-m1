@@ -25,6 +25,12 @@
                     {% endfor %}
                 </td>
             </tr>
+            <tr>
+                <th>Liste des livres : </th>
+                <td>
+                    <a href="{{ path('rayon_livres', { 'id': rayon.id }) }}">Afficher</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 

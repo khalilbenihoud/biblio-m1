@@ -6,7 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use BibliothequeBundle\Entity\Exemplaire;
+use BibliothequeBundle\Entity\Rayon;
 use BibliothequeBundle\Form\ExemplaireType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Exemplaire controller.
@@ -40,11 +42,32 @@ class ExemplaireController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($exemplaire);
-            $em->flush();
+            
+            //On récupère le theme du livre sélectionné
+            $themeL = $exemplaire->getLivre()->getThemeLivre();
+            foreach ($themeL as $value) {
+                $themeLivre = $value;
+            }
 
-            return $this->redirectToRoute('exemplaire_show', array('id' => $exemplaire->getId()));
+            //On récupère le theme du rayon de l'étagère
+            $themeRayon = $exemplaire->getEtagere()->getRayon();
+            $themeRayon = explode(']', $themeRayon);
+            $themeRayon = $themeRayon[2];
+            
+            //On les compare afin de n'enregistrer un exemplaire que si le theme livre = theme rayon
+            if($themeLivre != $themeRayon){
+                $message =  "Votre exemplaire n'a pas été enregistré. <br />Veuillez vérifier que le thème de votre livre correspond au thème du rayon dans lequel votre étagère se situe.";
+                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/new">Retour au formulaire</a>';
+                return new Response("<html><body>$message</body></html>");
+            }
+            else{
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($exemplaire);
+                $em->flush();
+
+                return $this->redirectToRoute('exemplaire_show', 
+                            array('id' => $exemplaire->getId()));
+            }
         }
 
         return $this->render('BibliothequeBundle:Exemplaire:new.html.twig', array(

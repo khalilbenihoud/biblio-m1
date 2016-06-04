@@ -22,3 +22,7 @@ rayon_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Rayon:delete" }
     methods:  DELETE
+rayon_livres:
+    path:     /{id}/livres
+    defaults: { _controller: "BibliothequeBundle:Rayon:getLivres" }
+    methods:  [GET, POST]

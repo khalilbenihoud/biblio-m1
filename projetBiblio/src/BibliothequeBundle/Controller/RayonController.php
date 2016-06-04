@@ -125,4 +125,19 @@ class RayonController extends Controller
             ->getForm()
         ;
     }
+
+    public function getLivresAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $RayonRepository = $em->getRepository('BibliothequeBundle:Rayon');
+        
+        $rayon = $RayonRepository->find($id);
+
+        $livres = $RayonRepository->getLivresRayon($id);
+
+        return $this->render('BibliothequeBundle:Rayon:livresRayon.html.twig', array(
+            'rayon' => $rayon,
+            'livres' => $livres,
+        ));
+    }
 }
