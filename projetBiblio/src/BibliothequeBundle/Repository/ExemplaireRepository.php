@@ -10,4 +10,12 @@ namespace BibliothequeBundle\Repository;
  */
 class ExemplaireRepository extends \Doctrine\ORM\EntityRepository
 {
+    // on recupere les exemplaires empruntés qui ont un ID NULL
+    // SI NULL c'est qu'il n'est pas emprunté
+    public function findByLivreDispo(){
+        $livre = $this->createQueryBuilder('e');
+        $livre->leftJoin('e.emprunter','em')
+            ->where('em.id IS NULL');
+        return $livre->getQuery()->getResult();
+    }
 }

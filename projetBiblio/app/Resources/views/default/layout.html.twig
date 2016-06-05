@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#<nav>#}
+        {#<div>#}
+            {#<div>#}
+                {#<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">#}
+                    {#<span class="sr-only">Toggle navigation</span>#}
+                    {#<span class="icon-bar"></span>#}
+                    {#<span class="icon-bar"></span>#}
+                    {#<span class="icon-bar"></span>#}
+                {#</button>#}
+                {#<a class="navbar-brand" href="{{ path('bibliotheque_homepage') }}">Projet Bibliothéque</a>#}
+            {#</div>#}
+            {#<div>#}
+                {#<ul class="nav navbar-nav">#}
+                    {#<li class="active">#}
+                    {#<li class="dropdown">#}
+                        {#<a href="{{ path('livre_index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conservateur <span class="caret"></span></a>#}
+                        {#<ul class="dropdown-menu">#}
+                            {#<li><a href="{{ path('livre_index') }}">Gestion des livres</a></li>#}
+                            {#<li><a href="{{ path('auteur_index') }}">Gestion des auteurs</a></li>#}
+                            {#<li><a href="{{ path('theme_index') }}">Gestion des theme</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#</li>#}
+
+    <div class="navigation" style="text-align:center;">
+        <a href="{{ path('bibliotheque_pret_liste') }}" style="color:mediumvioletred;font-weight:bold;">Agent au prêt</a>
+            <ul style="list-style:none;">
+                <a href="{{ path('bibliotheque_pret_liste') }}">Livres empruntés</a> | <a href="{{ path('bibliotheque_pret_listeLivreDispo') }}">Livres disponible</a> | <a href="#">Liste hors délais</a>
+            </ul>
+    </div>
+
+
+                    {#</li>#}
+                    {#<li class="dropdown">#}
+                        {#<a href="{{ path('lecteur_index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lecteurs <span class="caret"></span></a>#}
+                        {#<ul class="dropdown-menu">#}
+                            {#<li><a href="#">Gestion des inscrits</a></li>#}
+                            {#<li><a href="#">Réserver un livre</a></li>#}
+                            {#<li><a href="#">Rechercher un livre</a></li>#}
+                            {#<li><a href="#">Liste réservation</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+
+                    {#<li><a href="{{ path('faculte_index') }}">Gestion  des Facultés</a></li>#}
+                {#</ul>#}
+            {#</div><!--/.nav-collapse -->#}
+        {#</div>#}
+    {#</nav><br><br><br><br>#}
+    {% block container %}{% endblock %}
+
+{% endblock %}

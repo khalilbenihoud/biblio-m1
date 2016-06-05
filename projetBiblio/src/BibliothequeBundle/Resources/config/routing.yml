@@ -42,3 +42,32 @@ bibliotheque_emprunter:
     resource: "@BibliothequeBundle/Resources/config/routing/emprunter.yml"
     prefix:   /emprunter
 
+bibliotheque_pret:
+    path:     /pret
+    defaults: { _controller: BibliothequeBundle:Pret:index }
+
+bibliotheque_pret_liste:
+    path:     /pret/liste
+    defaults: { _controller: BibliothequeBundle:Pret:listePret }
+
+bibliotheque_pret_listeParLivre:
+    path:     /pret/liste/rechercheLivre
+    defaults: { _controller: BibliothequeBundle:Pret:listePretParLivre }
+    requirements:
+        _method: POST
+
+bibliotheque_pret_listeParLecteur:
+    path:     /pret/liste/rechercheLecteur/{mot}
+    defaults: { _controller: BibliothequeBundle:Pret:listePretParLecteur }
+
+bibliotheque_pret_listeLivreDispo:
+    path:     /pret/liste/livreDispo
+    defaults: { _controller: BibliothequeBundle:Pret:consulteLivreDispo }
+    requirements:
+        _method: POST
+
+bibliotheque_pret_ajoutPretLivre:
+    path:     /pret/liste/livreDispo/ajoutPret
+    defaults: { _controller: BibliothequeBundle:Pret:ajoutPretLivre }
+    requirements:
+        _method: POST

@@ -10,4 +10,5 @@ namespace BibliothequeBundle\Repository;
  */
 class LecteurRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

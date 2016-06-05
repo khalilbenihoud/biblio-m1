@@ -10,4 +10,29 @@ namespace BibliothequeBundle\Repository;
  */
 class EmprunterRepository extends \Doctrine\ORM\EntityRepository
 {
+    // Jointure avec les exemplaire
+    // On recupere tous les livres qui matchent la recherche
+    public function findByTitreLivre($mot){
+        $pret = $this->createQueryBuilder('e');
+        $pret->innerJoin('e.exemplaire','ex')
+            ->innerJoin('ex.livre','l')
+            ->where('l.titreLivre LIKE :recherche')
+            ->setParameter('recherche', '%' . $mot . '%');
+        return $pret->getQuery()->getResult();
+    }
+    public function findByNomLecteur($mot){
+        $pret = $this->createQueryBuilder('e');
+        $pret->innerJoin('e.emprunteur','em')
+            ->where('em.nomLecteur LIKE :recherche')
+            ->setParameter('recherche', '%' . $mot . '%');
+        return $pret->getQuery()->getResult();
+    }
+    public function findByHorsDelais(){
+        $date = new \DateTime();
+        $queryBuilder = $this->createQueryBuilder('e');
+        $queryBuilder->where('e.dateFin < :date')
+            ->setParameter('date',$date);
+        return $queryBuilder->getQuery()->getResult();
+
+    }
 }

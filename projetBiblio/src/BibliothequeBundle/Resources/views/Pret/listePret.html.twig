@@ -1,0 +1,65 @@
+{% extends 'default/layout.html.twig' %}
+{% block container %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var s = $("#select").val();
+            $("#s").val(s);
+
+            $("#select").change(function(){
+                var s = $("#select").val();
+                $("#s").val(s);
+            });
+        });
+    </script>
+    <div>
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div style="color:red;">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                {% for flashMessage in app.session.flashbag.get('alerte') %}
+                    <div style="color:red;">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+        <p>Rechercher par : </p>
+            <select class="form-control" id="select">
+                <option>Livre</option>
+                <option>Lecteur</option>
+            </select>
+                    <form method="post" action="{{ path('bibliotheque_pret_listeParLivre') }}">
+                        <input type="text" id="c" name="c" class="form-control" placeholder="Rechercher" required>
+                        <button type="submit">Valider</button>
+                        <input type="hidden" name="s" id="s" value="Livre">
+                    </form>
+                <table>
+                    <tr>
+                        <th>Nom emprunteur</th>
+                        <th>Prénom emprunteur</th>
+                        <th>Livre emprunté</th>
+                        <th>Exemplaire emprunté</th>
+                        <th>Date sortie</th>
+                        <th>Date retour</th>
+                        <th>Réserver / Retour</th>
+                    </tr>
+                    {% for emprunt in emprunter %}
+                        <tr>
+                            <td>{{ emprunt.emprunteur.nomLecteur }}</td>
+                            <td>{{ emprunt.emprunteur.prenomLecteur }}</td>
+                            <td>{{ emprunt.exemplaire.livre.titreLivre }}</td>
+                            <td style="text-align:center;">{{ emprunt.exemplaire.numeroExemplaire }}</td>
+                            <td>{{ emprunt.dateDebut|date("d/m/Y") }}</td>
+                            <td>{{ emprunt.dateFin|date("d/m/Y") }}</td>
+                            <td>
+                                <a href="#"><button>Réserver</button></a>
+                                <a href="#"><button>Retourner</button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+    </div>
+{% endblock %}

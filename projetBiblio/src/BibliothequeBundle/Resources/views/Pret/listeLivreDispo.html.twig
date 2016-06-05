@@ -1,0 +1,43 @@
+{% extends 'Default/layout.html.twig' %}
+{% block container %}
+
+    <div id="navbar" class="navbar-collapse collapse">
+        <div class="well">
+            <div class="row">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-success">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('alerte') %}
+                    <div class="alert alert-danger">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="panel panel-default">
+                <table class="table table bordered table striped">
+                    <tr>
+                        <th>Titre de livre</th>
+                        <th>Notice de livre</th>
+                        <th>Numéro d'exemplaire </th>
+                        <th>Réserver/Prêter </th>
+                    </tr>
+                    {% for livre in livres %}
+                        <tr>
+                            <td>{{ livre.livre.titreLivre }}</td>
+                            <td>{{ livre.livre.noticeLivre }}</td>
+                            <td>{{ livre.numeroExemplaire }}</td>
+                            <td>
+                                <a href="#"><button class="btn btn-default"><span class="glyphicon glyphicon-book"></span></button></a>
+                                <a href="{{ path('bibliotheque_pret_ajoutPretLivre', {'id': livre.id }) }}">Emprunter</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
