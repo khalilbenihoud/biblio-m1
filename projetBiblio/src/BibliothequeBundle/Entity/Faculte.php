@@ -97,4 +97,8 @@ class Faculte
     {
         return $this->etudiants;
     }
+    public function __toString()
+    {
+        return $this->getDesignationFaculte();
+    }
 }

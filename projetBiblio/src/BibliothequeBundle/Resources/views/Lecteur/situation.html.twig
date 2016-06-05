@@ -1,38 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-
-             <h1>Situation du lecteur</h1></br>
-                <table border="1" cellpadding="3px">
-                    <tbody>
-                    <tr>
-                        <th>Nom Lecteur</th>
-                        <td>{{ lecteur.nomLecteur }}</td>
-                    </tr>
-                    <tr>
-                        <th>Prénom Lecteur</th>
-                        <td>{{ lecteur.prenomLecteur }}</td>
-                    </tr>
-                    <tr>
-                        <th>Livre(s) prêté(s)</th>
-                        {% for emprunt in emprunter %}
-                        {% if  emprunt.dateDebut|date_modify("+40 day") < date()  %}
-                    <td style="color: darkred;">{{ emprunt.exemplaire.livre.titreLivre }}</td>
+                 <h1>Situation du lecteur</h1></br>
+                <h3>Nom Prénom:   {{ lecteur.nomLecteur }} {{ lecteur.prenomLecteur }}</h3>
+                <ul><h3>Livre(s) prêté(s)</h3>
+                 {% for emprunt in emprunter %}
+                        {% if  emprunt.dateDebut|date_modify("+15 day") < date()  %}
+                    <li style="color: darkred;">{{ emprunt.exemplaire.livre.titreLivre }}</li>
 
                         {% else %}
 
-                        <td style="color: darkgreen;">{{ emprunt.exemplaire.livre.titreLivre }}</td>
+                        <li style="color: darkgreen;">{{ emprunt.exemplaire.livre.titreLivre }}</li>
                         {% endif %}
                         {% endfor %}
-                    </tr>
-                    <tr>
-                        <th>Livre(s) reservé(s)</th>
+
+</ul>
+ <ul><h3>Livre(s) reservé(s)</h3>
                         {% for reservation in reserver %}
-                            <td>{{ reservation.livre.livre.titreLivre }}</td>
+                            <li>{{ reservation.livre.livre.titreLivre }}</li>
                         {% endfor %}
-                    </tr>
-                    </tbody>
-                </table>
+
+</ul>
 
 
 {% endblock %}
