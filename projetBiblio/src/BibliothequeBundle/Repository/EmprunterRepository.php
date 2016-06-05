@@ -28,11 +28,11 @@ class EmprunterRepository extends \Doctrine\ORM\EntityRepository
         return $pret->getQuery()->getResult();
     }
     public function findByHorsDelais(){
+        // on recupere tous les emprunts qui ont une date de fin inférieur a la date du systeme
         $date = new \DateTime();
         $queryBuilder = $this->createQueryBuilder('e');
         $queryBuilder->where('e.dateFin < :date')
             ->setParameter('date',$date);
         return $queryBuilder->getQuery()->getResult();
-
     }
 }

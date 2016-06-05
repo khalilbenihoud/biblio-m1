@@ -12,7 +12,6 @@ use BibliothequeBundle\Entity\Archivage;
 use BibliothequeBundle\Entity\Emprunter;
 use BibliothequeBundle\Entity\Exemplaire;
 use BibliothequeBundle\Entity\Lecteur;
-use BibliothequeBundle\Entity\Reserver;
 use BibliothequeBundle\Form\LecteurType;
 use BibliothequeBundle\Form\EmprunterType;
 use BibliothequeBundle\Form\LivreType;
@@ -43,6 +42,14 @@ class PretController extends Controller
             $em = $this->getDoctrine()->getManager(); // connexion avec la BDD et entités
             $repository = $em->getRepository('BibliothequeBundle:Emprunter'); // chemin est emprunter
             $emprunter = $repository->findByTitreLivre($mot); // on stock les livres dans emprunter
+            if(count($emprunter)>0){
+                return $this->render('BibliothequeBundle:Pret:listePret.html.twig',array('emprunter'=>$emprunter));
+            }
+            else{
+                $request->getSession()->getFlashBag()->add('notice', 'Nous n avons rien trouvé avec votre mot clé '.' '.$mot.' ');
+                return $this->redirectToRoute("bibliotheque_pret_liste");
+            }
+
             return $this->render('BibliothequeBundle:Pret:listePret.html.twig',array('emprunter'=>$emprunter));
         }
         else{
@@ -137,7 +144,7 @@ class PretController extends Controller
     {
         $quota = true;
         $cycleLecteur = $lecteur->getCycleLecteur();
-        $emprunter   = $lecteur->getEmprunter();
+        $emprunter = $lecteur->getEmprunter();
         $nombreEmprunt = count($emprunter);
         if($cycleLecteur==1){
             if($nombreEmprunt>=5){
@@ -146,4 +153,39 @@ class PretController extends Controller
         }
         return $quota;
     }
+
+    public function retourPretAction(Request $request){
+        $id=$request->query->get('id'); // id du PRET
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('BibliothequeBundle:Emprunter');
+        $emprunt = $repository->find($id);
+        $lecteur = $emprunt->getEmprunteur(); // on recupere lecteur de l'emprunt
+        $exemplaire = $emprunt->getExemplaire();
+        $idLecteur = $lecteur->getId();
+        $idExemplaire = $exemplaire->getId();
+        $date = new \DateTime();
+        $archivage = new Archivage; // création d'un objet archivage
+        $archivage->setIdExemplaire($idExemplaire);
+        $archivage->setIdLecteur($idLecteur);
+        $archivage->setDateRetour($date);
+        $em->persist($archivage);
+        $em->remove($emprunt);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('notice', 'Le retour a été effectué avec succès');
+
+        $date = new \DateTime();
+        if($emprunt->getDateFin()<$date){
+            $request->getSession()->getFlashBag()->add('alerte', 'Le retour hors délais.');
+        }
+        return $this->redirectToRoute('bibliotheque_pret_liste');
+    }
+
+
+    public function listeHorsDelaisAction(){
+        $repository = $this->getDoctrine()->getManager()->getRepository('BibliothequeBundle:Emprunter');
+        $emprunter = $repository->findByHorsDelais();
+        return $this->render('BibliothequeBundle:Pret:listeHorsDelais.html.twig',
+            array('emprunter' => $emprunter));
+    }
+
 }

@@ -71,3 +71,13 @@ bibliotheque_pret_ajoutPretLivre:
     defaults: { _controller: BibliothequeBundle:Pret:ajoutPretLivre }
     requirements:
         _method: POST
+
+bibliotheque_pret_retour:
+    path:     /pret/retour
+    defaults: { _controller: BibliothequeBundle:Pret:retourPret }
+    requirements:
+        _method: POST
+
+bibliotheque_pret_liste_horsDelais:
+    path:     /pret/listeHorsDelais
+    defaults: { _controller: BibliothequeBundle:Pret:listeHorsDelais }

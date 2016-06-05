@@ -59,7 +59,7 @@
                             <td>{{ emprunt.dateFin|date("d/m/Y") }}</td>
                             <td>
                                 <a href="#"><button>Réserver</button></a>
-                                <a href="#"><button>Retourner</button></a>
+                                <a href="{{ path('bibliotheque_pret_retour', {'id': emprunt.id }) }}"><button>Retourner</button></a>
                             </td>
                         </tr>
                     {% endfor %}
