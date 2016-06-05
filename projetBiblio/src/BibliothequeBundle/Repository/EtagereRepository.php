@@ -10,4 +10,14 @@ namespace BibliothequeBundle\Repository;
  */
 class EtagereRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getNbExemplaire($id) {
+	    $query = $this->getEntityManager()->createQueryBuilder('ex')
+	    ->select('COUNT(ex)')
+	    ->from('BibliothequeBundle:Exemplaire', 'ex')
+	    ->innerJoin('BibliothequeBundle:Etagere', 'e', 'WITH', 'e.id = ex.etagere')
+	    ->where('e.id = :idEtagere')
+	    ->setParameter('idEtagere', $id);
+
+	    return $query->getQuery()->getSingleScalarResult();
+	}
 }

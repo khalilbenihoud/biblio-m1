@@ -22,3 +22,18 @@ rayon_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Rayon:delete" }
     methods:  DELETE
+
+rayon_livres:
+    path:     /{id}/livres
+    defaults: { _controller: "BibliothequeBundle:Rayon:getLivres" }
+    methods:  [GET, POST]
+
+nb_etagere:
+    path:     /{id}/nbEtagere
+    defaults: { _controller: "BibliothequeBundle:Rayon:testNbEtagere" }
+    methods:  [GET, POST]
+
+rayon_delete_error:
+    path:     /rayon_delete_error
+    defaults: { _controller: "BibliothequeBundle:Rayon:delError" }
+    methods:  GET

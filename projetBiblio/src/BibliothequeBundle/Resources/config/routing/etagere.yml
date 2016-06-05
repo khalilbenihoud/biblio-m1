@@ -22,3 +22,13 @@ etagere_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Etagere:delete" }
     methods:  DELETE
+
+nb_exemplaire:
+    path:     /{id}/nbExemplaire
+    defaults: { _controller: "BibliothequeBundle:Etagere:testNbExemplaire" }
+    methods:  [GET, POST]
+
+delete_error:
+    path:     /delete_error
+    defaults: { _controller: "BibliothequeBundle:Etagere:delError" }
+    methods:  GET

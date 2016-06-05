@@ -129,7 +129,7 @@ class Etagere
 
     public function __toString()
     {
-        return $this->getNumeroEtagere().'-'.$this->getRayon();
+        return $this->getRayon().' - '.'Etagère : '.$this->getNumeroEtagere();
     }
 
 }
