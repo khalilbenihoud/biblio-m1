@@ -10,16 +10,27 @@ namespace BibliothequeBundle\Repository;
  */
 class RayonRepository extends \Doctrine\ORM\EntityRepository {
 
-  public function getLivresRayon($id) {
-    $query = $this->getEntityManager()->createQueryBuilder('l')
-    ->select('l')
-    ->from('BibliothequeBundle:Livre', 'l')
-    ->innerJoin('BibliothequeBundle:Exemplaire', 'e', 'WITH', 'e.livre = l.id')
-    ->innerJoin('BibliothequeBundle:Etagere', 'et', 'WITH', 'et.id = e.etagere')
-    ->where('et.rayon = :idRayon')
-    ->setParameter('idRayon', $id);
+    public function getLivresRayon($id) {
+        $query = $this->getEntityManager()->createQueryBuilder('l')
+        ->select('l')
+        ->from('BibliothequeBundle:Livre', 'l')
+        ->innerJoin('BibliothequeBundle:Exemplaire', 'e', 'WITH', 'e.livre = l.id')
+        ->innerJoin('BibliothequeBundle:Etagere', 'et', 'WITH', 'et.id = e.etagere')
+        ->where('et.rayon = :idRayon')
+        ->setParameter('idRayon', $id);
 
-    return $query->getQuery()->getResult();
-  }
+        return $query->getQuery()->getResult();
+    }
+
+    public function getNbEtagere($id) {
+        $query = $this->getEntityManager()->createQueryBuilder('et')
+        ->select('COUNT(et)')
+        ->from('BibliothequeBundle:Etagere', 'et')
+        ->innerJoin('BibliothequeBundle:Rayon', 'r', 'WITH', 'r.id = et.rayon')
+        ->where('r.id = :idRayon')
+        ->setParameter('idRayon', $id);
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
   
 }

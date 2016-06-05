@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Exemplaire :</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>L'étagère est-elle trop pleine ?</th>
+                <td>
+                    {% if result %} Oui {% else %} Non {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exemplaire_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

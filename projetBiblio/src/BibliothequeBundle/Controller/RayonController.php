@@ -103,11 +103,18 @@ class RayonController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($rayon);
-            $em->flush();
-        }
+            $rayonRepository = $em->getRepository('BibliothequeBundle:Rayon');
+            $nbEtagere = $rayonRepository->getNbEtagere($rayon->getId());
 
-        return $this->redirectToRoute('rayon_index');
+            if($nbEtagere != 0){
+                return $this->redirectToRoute('rayon_delete_error');
+            }
+            else{
+                $em->remove($rayon);
+                $em->flush();
+                return $this->redirectToRoute('rayon_index');
+            }
+        }
     }
 
     /**
@@ -139,5 +146,21 @@ class RayonController extends Controller
             'rayon' => $rayon,
             'livres' => $livres,
         ));
+    }
+
+    public function testNbEtagereAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $rayonRepository = $em->getRepository('BibliothequeBundle:Rayon');
+
+        $nbEtagere = $rayonRepository->getNbEtagere($id);
+
+        return $this->render('BibliothequeBundle:Rayon:nbEtagere.html.twig', array(
+            'nbEtagere' => $nbEtagere,
+        ));
+    }
+
+    public function delErrorAction(){
+        return $this->render('BibliothequeBundle:Rayon:delError.html.twig');
     }
 }

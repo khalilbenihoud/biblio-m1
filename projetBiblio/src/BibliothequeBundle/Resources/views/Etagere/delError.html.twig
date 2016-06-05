@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Erreur de suppression</h1>
+
+    <table>
+        <tbody>
+            Cette étagère doit être vide pour la supprimer.
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('etagere_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

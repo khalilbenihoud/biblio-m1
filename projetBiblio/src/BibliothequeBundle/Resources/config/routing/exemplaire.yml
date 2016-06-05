@@ -22,3 +22,13 @@ exemplaire_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Exemplaire:delete" }
     methods:  DELETE
+
+etagere_trop_pleine:
+    path:     /etagere/{id}/estTropPleine
+    defaults: { _controller: "BibliothequeBundle:Exemplaire:testEtagereTropPleine" }
+    methods:  [GET, POST]
+
+exemplaire_livre_etagere:
+    path:     /livre/{idLivre}/etagere/{idEtagere}
+    defaults: { _controller: "BibliothequeBundle:Exemplaire:testListeExemplaireInEtagere" }
+    methods:  [GET, POST]
