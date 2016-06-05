@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <a href="{{ path('livre_search') }}"><h3 style="text-align: center;">Rechercher un livre </h3></a>
     <h1>Liste Des inscrits</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Nomlecteur</th>
-                <th>Prenomlecteur</th>
-                <th>Cyclelecteur</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Cycle</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,6 +26,9 @@
                         </li>
                         <li>
                             <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Modifier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('situationpret', {'id': lecteur.id }) }}">Situation</a>
                         </li>
                     </ul>
                 </td>

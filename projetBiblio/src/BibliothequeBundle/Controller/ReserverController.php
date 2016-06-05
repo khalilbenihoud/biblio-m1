@@ -127,7 +127,7 @@ class ReserverController extends Controller
         $repository = $em->getRepository('BibliothequeBundle:Emprunter');
         $emprunt = $repository->find($id);
         $ecteur = $emprunt->getEmprunteur();
-        $quota = $this->CheckQuotaLecteur($ecteur);
+        $quota = $this->LimitReservationLecteur($ecteur);
         if(!$e){
             $reserver = new Reserver();
             $repository = $em->getRepository('BibliothequeBundle:Exemplaire');
@@ -171,11 +171,27 @@ class ReserverController extends Controller
             return $this->redirectToRoute('bibliotheque_pret_liste');
         }
     }
+    /**
+     * fonction annuler réservation dans la situation des pret et reservation
+     */
+
+    public function annulerReservationAction(Request $request)
+    {
+        $id=$request->query->get('id');
+        $idLecteur = $request->get('idlecteur');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('BibliothequeBundle:Reserver');
+        $reserver = $repository->find($id);
+        $em->remove($reserver);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('notice', 'Réservation annuler');
+        return $this->redirectToRoute('situationpret', array('id' => $idLecteur ));
+    }
 
     /**
      * fonction pour verifier si le lecteur peux encore faire un emprunt
      */
-    public function CheckQuotaLecteur(Lecteur $lecteur)
+    public function LimitReservationLecteur(Lecteur $lecteur)
     {
         $quota = true;
         $cycleLecteur = $lecteur->getCycleLecteur();

@@ -27,3 +27,8 @@ reserver_ajoutReservationLivreIndispo:
     defaults: { _controller: BibliothequeBundle:Reserver:ajoutReservationLivreIndispo }
     requirements:
         _method: POST
+reserver_annulerReservation:
+    path:     /annulerReservation
+    defaults: { _controller: BibliothequeBundle:Reserver:annulerReservation }
+    requirements:
+        _method: POST
