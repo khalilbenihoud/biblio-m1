@@ -17,7 +17,7 @@
 </ul>
  <ul><h3>Livre(s) reservé(s)</h3>
                         {% for reservation in reserver %}
-                            <li>{{ reservation.livre.livre.titreLivre }}</li>
+                            <li>{{ reservation.livre.livre.titreLivre }} <a href="{{ path('reserver_annulerReservation', {'id': reservation.id ,'idlecteur' : lecteur.id}) }}">Annuler</a></li>
                         {% endfor %}
 
 </ul>
