@@ -2,11 +2,15 @@
 
 namespace BibliothequeBundle\Controller;
 
+use Proxies\__CG__\BibliothequeBundle\Entity\Lecteur;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use BibliothequeBundle\Entity\Reserver;
+use BibliothequeBundle\Entity\Emprunter;
 use BibliothequeBundle\Form\ReserverType;
+use BibliothequeBundle\Entity\ExemplaireRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Reserver controller.
@@ -108,6 +112,81 @@ class ReserverController extends Controller
         }
 
         return $this->redirectToRoute('reserver_index');
+    }
+    /**
+     * Réservation d'un livre indisponible appel dans la liste des emprunt
+     */
+
+    public function ajoutReservationLivreIndispoAction(Request $request){
+
+        $idLivre=$request->query->get('idLivre'); //id exemplaire à reservé
+        $id=$request->query->get('id');  // id de l'emprunt
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('BibliothequeBundle:Reserver');
+        $e = $repository->findBy(array('livre'=>$idLivre));
+        $repository = $em->getRepository('BibliothequeBundle:Emprunter');
+        $emprunt = $repository->find($id);
+        $ecteur = $emprunt->getEmprunteur();
+        $quota = $this->CheckQuotaLecteur($ecteur);
+        if(!$e){
+            $reserver = new Reserver();
+            $repository = $em->getRepository('BibliothequeBundle:Exemplaire');
+            $exemplaire = $repository->find($idLivre);
+            $form = $this->createFormBuilder($reserver)
+                ->add('lecteur', EntityType::class,
+                    array ('label' => 'Nom du Lecteur',
+                        'class' => 'BibliothequeBundle:Lecteur',
+                        'choice_label' => 'nomLecteur',
+                        'required' => true,
+                        'attr'=> array('class'=>'form-control'),
+                    ))
+                ->add('dateReservation',DateType::class,array('required' => false,
+                    'widget' =>'single_text',
+                    'format'=>'yyyy-MM-dd',
+                    'required' => true,
+                    'attr'=>array('class'=>'form-control'),
+                ))
+                ->getForm();
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                if($reserver->getDateReservation()>$emprunt->getDateFin() && $quota ){
+                    //vérification si la date de la réservation
+                    // dépasse la date de retoure et vérification du quota
+                    $reserver->setLivre($exemplaire);
+                    $entityManager->persist($reserver);
+                    $entityManager->flush();
+                    $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
+                    return $this->redirectToRoute('bibliotheque_pret_liste');
+                }
+                else{
+                    $request->getSession()->getFlashBag()->add('alerte', 'Réservation impossible.');
+                    return $this->redirectToRoute('bibliotheque_pret_liste');
+                }
+            }
+            return $this->render('BibliothequeBundle:Reserver:ajoutReservationLivre.html.twig', array('form' => $form->createView()));
+        }
+        else{
+            $request->getSession()->getFlashBag()->add('alerte', 'ce livre est deja réserver');
+            return $this->redirectToRoute('bibliotheque_pret_liste');
+        }
+    }
+
+    /**
+     * fonction pour verifier si le lecteur peux encore faire un emprunt
+     */
+    public function CheckQuotaLecteur(Lecteur $lecteur)
+    {
+        $quota = true;
+        $cycleLecteur = $lecteur->getCycleLecteur();
+        $emprunter   = $lecteur->getEmprunter();
+        $nombreEmprunt = count($emprunter);
+        if($cycleLecteur==1){
+            if($nombreEmprunt>=5){
+                $quota=false;
+            }
+        }
+        return $quota;
     }
 
     /**

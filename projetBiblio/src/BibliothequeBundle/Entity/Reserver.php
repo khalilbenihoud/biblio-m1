@@ -109,4 +109,6 @@ class Reserver
     {
         return $this->lecteur;
     }
+//TODO: ajout toString
 }
+

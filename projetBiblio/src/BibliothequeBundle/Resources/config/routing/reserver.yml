@@ -22,3 +22,8 @@ reserver_delete:
     path:     /{id}/delete
     defaults: { _controller: "BibliothequeBundle:Reserver:delete" }
     methods:  DELETE
+reserver_ajoutReservationLivreIndispo:
+    path:     /ajoutReservationIndispo
+    defaults: { _controller: BibliothequeBundle:Reserver:ajoutReservationLivreIndispo }
+    requirements:
+        _method: POST
