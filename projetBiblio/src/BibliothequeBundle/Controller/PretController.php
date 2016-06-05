@@ -115,7 +115,7 @@ class PretController extends Controller
                 $entityManager = $this->getDoctrine()->getManager();
                 $emprunter->setExemplaire($exemplaire);
                 $lecteur = $emprunter->getEmprunteur();
-                $quota  = $this->CheckQuotaLecteur($lecteur);
+                $quota  = $this->LimitReservationLecteur($lecteur);
 
                 $emprunter->setDateFin($dateFin);
                 if($quota){
@@ -140,7 +140,7 @@ class PretController extends Controller
 
     }
 
-    public function CheckQuotaLecteur(Lecteur $lecteur)
+    public function LimitReservationLecteur(Lecteur $lecteur)
     {
         $quota = true;
         $cycleLecteur = $lecteur->getCycleLecteur();
