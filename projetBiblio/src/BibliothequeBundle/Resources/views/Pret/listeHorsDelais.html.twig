@@ -1,0 +1,41 @@
+{% extends 'Default/layout.html.twig' %}
+{% block container %}
+    <div id="navbar" class="navbar-collapse collapse">
+    <div class="well">
+        <div class="row">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        </div>
+        <h1>Liste hors délais</h1><br>
+        <div class="panel panel-default">
+            <table >
+                <tr>
+                    <th>Nom emprunteur</th>
+                    <th>Prénom emprunteur</th>
+                    <th>Livre emprunté</th>
+                    <th>Exemplaire emprunté</th>
+                    <th>Date sortie</th>
+                    <th>Date retour</th>
+                    <th>Retour</th>
+                </tr>
+                {% for emprunt in emprunter %}
+                    <tr style="color:red;">
+                        <td class="danger">{{ emprunt.emprunteur.nomLecteur }}</td>
+                        <td class="danger">{{ emprunt.emprunteur.prenomLecteur }}</td>
+                        <td class="danger">{{ emprunt.exemplaire.livre.titreLivre }}</td>
+                        <td class="danger">{{ emprunt.exemplaire.numeroExemplaire }}</td>
+                        <td class="danger">{{ emprunt.dateDebut|date("d/m/Y") }}</td>
+                        <td class="danger">{{ emprunt.dateFin|date("d/m/Y") }}</td>
+                        <td class="danger"><a href="{{ path('bibliotheque_pret_retour', {'id': emprunt.id }) }}"><button>Retourner</button></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+
+{% endblock %}

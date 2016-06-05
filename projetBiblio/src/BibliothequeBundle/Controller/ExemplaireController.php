@@ -6,7 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use BibliothequeBundle\Entity\Exemplaire;
+use BibliothequeBundle\Entity\Rayon;
 use BibliothequeBundle\Form\ExemplaireType;
+use Symfony\Component\HttpFoundation\Response;
+use BibliothequeBundle\Entity\Etagere;
 
 /**
  * Exemplaire controller.
@@ -40,11 +43,64 @@ class ExemplaireController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($exemplaire);
-            $em->flush();
+            
+            //On récupère le theme du livre sélectionné
+            $themeL = $exemplaire->getLivre()->getThemeLivre();
+            foreach ($themeL as $value) {
+                $themeLivre = $value;
+            }
 
-            return $this->redirectToRoute('exemplaire_show', array('id' => $exemplaire->getId()));
+            //On récupère le theme du rayon de l'étagère
+            $themeRayon = $exemplaire->getEtagere()->getRayon();
+            $themeRayon = explode(']', $themeRayon);
+            $themeRayon = $themeRayon[2];
+            
+            //On les compare afin de n'enregistrer un exemplaire que si le theme livre = theme rayon
+            if($themeLivre != $themeRayon){
+                $message =  "Votre exemplaire n'a pas été enregistré. <br />Veuillez vérifier que le thème de votre livre correspond au thème du rayon dans lequel votre étagère se situe.";
+                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/new">Retour au formulaire</a>';
+                return new Response("<html><body>$message</body></html>");
+            }
+            else{
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($exemplaire);
+                $em->flush();
+
+                //Si etagere trop pleine
+                $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+                $idEtagere = $exemplaire->getEtagere()->getId();
+                $idLivre = $exemplaire->getLivre()->getId();
+                $etagereTropPleine = $exemplaireRepository->etagereTropPleine($idEtagere);
+
+                if($etagereTropPleine){
+                    // On créer une nouvelle étagère pour insérer les exemplaires
+                    $newEtagere = new Etagere;
+                    $newEtagere->setRayon($exemplaire->getEtagere()->getRayon());
+                    // Nouveau numeroEtagere car nouvelle étagère
+                    $numEtagereMax = $exemplaireRepository->getNumEtagereMax();
+                    $newEtagere->setNumeroEtagere($numEtagereMax+1);
+                    $em->persist($newEtagere);
+                    $em->flush();
+
+                    // On récupère les exemplaires de ce livre afin de les déplacer dans cette étagère
+                    $exemplairesLivre = $exemplaireRepository->listeExemplaireInEtagere($idLivre, $idEtagere);
+                    foreach ($exemplairesLivre as $exemp) {
+                        $newExemplaire = new Exemplaire;
+                        $newExemplaire->setLivre($exemp->getLivre());
+                        // Récupérer une étagère qui n'est pas trop pleine
+                        $newExemplaire->setEtagere($newEtagere);
+                        $newExemplaire->setNumeroExemplaire($exemp->getNumeroExemplaire());
+                        $em->persist($newExemplaire);
+                        $em->flush();
+                        $em->remove($exemp);
+                        $em->flush();
+                    }
+                    return $this->redirectToRoute('exemplaire_index');
+                }
+
+                return $this->redirectToRoute('exemplaire_show', 
+                            array('id' => $exemplaire->getId()));
+            }
         }
 
         return $this->render('BibliothequeBundle:Exemplaire:new.html.twig', array(
@@ -78,11 +134,62 @@ class ExemplaireController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($exemplaire);
-            $em->flush();
+            //On récupère le theme du livre sélectionné
+            $themeL = $exemplaire->getLivre()->getThemeLivre();
+            foreach ($themeL as $value) {
+                $themeLivre = $value;
+            }
 
-            return $this->redirectToRoute('exemplaire_edit', array('id' => $exemplaire->getId()));
+            //On récupère le theme du rayon de l'étagère
+            $themeRayon = $exemplaire->getEtagere()->getRayon();
+            $themeRayon = explode(']', $themeRayon);
+            $themeRayon = $themeRayon[2];
+            
+            //On les compare afin de n'enregistrer un exemplaire que si le theme livre = theme rayon
+            if($themeLivre != $themeRayon){
+                $message =  "Votre exemplaire n'a pas été enregistré. <br />Veuillez vérifier que le thème de votre livre correspond au thème du rayon dans lequel votre étagère se situe.";
+                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/'.$exemplaire->getId().'/edit">Retour à l\'édition</a>';
+                return new Response("<html><body>$message</body></html>");
+            }
+            else{
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($exemplaire);
+                $em->flush();
+
+                //Si etagere trop pleine
+                $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+                $idEtagere = $exemplaire->getEtagere()->getId();
+                $idLivre = $exemplaire->getLivre()->getId();
+                $etagereTropPleine = $exemplaireRepository->etagereTropPleine($idEtagere);
+
+                if($etagereTropPleine){
+                    // On créer une nouvelle étagère pour insérer les exemplaires
+                    $newEtagere = new Etagere;
+                    $newEtagere->setRayon($exemplaire->getEtagere()->getRayon());
+                    // Nouveau numeroEtagere car nouvelle étagère
+                    $numEtagereMax = $exemplaireRepository->getNumEtagereMax();
+                    $newEtagere->setNumeroEtagere($numEtagereMax+1);
+                    $em->persist($newEtagere);
+                    $em->flush();
+
+                    // On récupère les exemplaires de ce livre afin de les déplacer dans cette étagère
+                    $exemplairesLivre = $exemplaireRepository->listeExemplaireInEtagere($idLivre, $idEtagere);
+                    foreach ($exemplairesLivre as $exemp) {
+                        $newExemplaire = new Exemplaire;
+                        $newExemplaire->setLivre($exemp->getLivre());
+                        // Récupérer une étagère qui n'est pas trop pleine
+                        $newExemplaire->setEtagere($newEtagere);
+                        $newExemplaire->setNumeroExemplaire($exemp->getNumeroExemplaire());
+                        $em->persist($newExemplaire);
+                        $em->flush();
+                        $em->remove($exemp);
+                        $em->flush();
+                    }
+                    return $this->redirectToRoute('exemplaire_index');
+                }
+
+                return $this->redirectToRoute('exemplaire_edit', array('id' => $exemplaire->getId()));
+            }
         }
 
         return $this->render('BibliothequeBundle:Exemplaire:edit.html.twig', array(
@@ -124,5 +231,29 @@ class ExemplaireController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function testEtagereTropPleineAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+
+        $result = $exemplaireRepository->etagereTropPleine($id);
+
+        return $this->render('BibliothequeBundle:Exemplaire:testEtagereTropPleine.html.twig', array(
+            'result' => $result,
+        ));
+    }
+
+    public function testListeExemplaireInEtagereAction($idLivre, $idEtagere)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+
+        $exemplaires = $exemplaireRepository->listeExemplaireInEtagere($idLivre, $idEtagere);
+
+        return $this->render('BibliothequeBundle:Exemplaire:testListeExemplaireInEtagere.html.twig', array(
+            'exemplaires' => $exemplaires,
+        ));
     }
 }

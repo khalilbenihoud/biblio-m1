@@ -105,6 +105,22 @@ class AuteurController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+			
+			// On liste les livres
+			foreach ($auteur->getLivresEcrits() as $livre)
+			{
+				// Si un auteur, donc c'est coco qui l'a écrit, on supprime le bouquin
+				if (count($livre->getAuteur()) == 1)
+				{
+					$em->remove($livre);
+				}
+				// Sinon, on enlève cet auteur de la liste des écrivains du bouquin
+				else
+				{
+					$auteur->removeLivresEcrit($livre);
+				}
+			}
+			
             $em->remove($auteur);
             $em->flush();
         }

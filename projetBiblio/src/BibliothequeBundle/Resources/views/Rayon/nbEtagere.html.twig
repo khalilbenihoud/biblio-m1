@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rayon</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombre d'étagères présentes : </th>
+               <td>{{ nbEtagere }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rayon_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

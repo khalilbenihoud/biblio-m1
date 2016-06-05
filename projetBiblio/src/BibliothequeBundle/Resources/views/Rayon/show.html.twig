@@ -6,26 +6,44 @@
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Id : </th>
                 <td>{{ rayon.id }}</td>
             </tr>
             <tr>
-                <th>Designationrayon</th>
+                <th>Designation : </th>
                 <td>{{ rayon.designationRayon }}</td>
+            </tr>
+            <tr>
+                <th>Thème : </th>
+                <td>{{ rayon.themeRayon }}</td>
+            </tr>
+            <tr>
+                <th>Etagères : </th>
+                <td>
+                    {% for etageres in rayon.getEtageres %}
+                        {{ etageres.numeroEtagere~', ' }}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Liste des livres : </th>
+                <td>
+                    <a href="{{ path('rayon_livres', { 'id': rayon.id }) }}">Afficher</a>
+                </td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('rayon_index') }}">Back to the list</a>
+            <a href="{{ path('rayon_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">Edit</a>
+            <a href="{{ path('rayon_edit', { 'id': rayon.id }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

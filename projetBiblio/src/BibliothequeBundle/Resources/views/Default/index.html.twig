@@ -3,9 +3,33 @@
 {% block body %}
     <h1>Projet Symfony</h1>
 
+    <p>Partie A.</p>
     <a href="{{ path('livre_index') }}">Liste des livres</a>
     <br />
 	<a href="{{ path('auteur_index') }}">Liste des auteurs</a>
 	<br />
     <a href="{{ path('theme_index') }}">Liste des themes</a>
+    <br /><br />
+    <p>Partie B.</p>
+    <a href="{{ path('bibliotheque_pret_liste') }}">Livres empruntés</a>
+    <br />
+    <a href="{{ path('bibliotheque_pret_listeLivreDispo') }}">Livres disponible</a>
+    <br />
+    <a href="#">Liste hors délais</a>
+    <br /><br />
+    <p>Partie C.</p>
+    <a href="{{ path('bibliotheque_pret_liste') }}">Livres empruntés</a>
+    <br />
+    <a href="{{ path('bibliotheque_pret_listeLivreDispo') }}">Livres disponible</a>
+    <br />
+    <a href="#">Liste hors délais</a>
+    <br /><br />
+    <p>Partie D.</p>
+    <a href="{{ path('bibliotheque_pret_liste') }}">Livres empruntés</a>
+    <br />
+    <a href="{{ path('bibliotheque_pret_listeLivreDispo') }}">Livres disponible</a>
+    <br />
+    <a href="#">Liste hors délais</a>
+    <br /><br />
+
 {% endblock %}

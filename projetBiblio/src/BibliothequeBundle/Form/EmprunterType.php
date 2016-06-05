@@ -5,6 +5,7 @@ namespace BibliothequeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class EmprunterType extends AbstractType
 {
@@ -15,8 +16,8 @@ class EmprunterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut', 'datetime')
-            ->add('dateFin', 'datetime')
+            ->add('dateDebut', DatetimeType::class)
+            ->add('dateFin', DatetimeType::class)
             ->add('exemplaire')
             ->add('emprunteur')
         ;

@@ -1,32 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lecteur list</h1>
+    <a href="{{ path('livre_search') }}"><h3 style="text-align: center;">Rechercher un livre </h3></a>
+    <h1>Liste Des inscrits</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nomlecteur</th>
-                <th>Prenomlecteur</th>
-                <th>Cyclelecteur</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Cycle</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for lecteur in lecteurs %}
             <tr>
-                <td><a href="{{ path('lecteur_show', { 'id': lecteur.id }) }}">{{ lecteur.id }}</a></td>
                 <td>{{ lecteur.nomLecteur }}</td>
                 <td>{{ lecteur.prenomLecteur }}</td>
                 <td>{{ lecteur.cycleLecteur }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('lecteur_show', { 'id': lecteur.id }) }}">show</a>
+                            <a href="{{ path('lecteur_show', { 'id': lecteur.id }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">edit</a>
+                            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Modifier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('situationpret', {'id': lecteur.id }) }}">Situation</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('lecteur_new') }}">Create a new entry</a>
+            <a href="{{ path('lecteur_new') }}">Créer un nouveau inscrit</a>
         </li>
     </ul>
 {% endblock %}

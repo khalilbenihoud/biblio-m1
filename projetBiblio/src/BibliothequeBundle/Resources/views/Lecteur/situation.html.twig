@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+                 <h1>Situation du lecteur</h1></br>
+                <h3>Nom Prénom:   {{ lecteur.nomLecteur }} {{ lecteur.prenomLecteur }}</h3>
+                <ul><h3>Livre(s) prêté(s)</h3>
+                 {% for emprunt in emprunter %}
+                        {% if  emprunt.dateDebut|date_modify("+15 day") < date()  %}
+                    <li style="color: darkred;">{{ emprunt.exemplaire.livre.titreLivre }}</li>
+
+                        {% else %}
+
+                        <li style="color: darkgreen;">{{ emprunt.exemplaire.livre.titreLivre }}</li>
+                        {% endif %}
+                        {% endfor %}
+
+</ul>
+ <ul><h3>Livre(s) reservé(s)</h3>
+                        {% for reservation in reserver %}
+                            <li>{{ reservation.livre.livre.titreLivre }} <a href="{{ path('reserver_annulerReservation', {'id': reservation.id ,'idlecteur' : lecteur.id}) }}">Annuler</a></li>
+                        {% endfor %}
+
+</ul>
+
+
+{% endblock %}

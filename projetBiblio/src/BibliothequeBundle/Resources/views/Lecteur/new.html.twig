@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lecteur creation</h1>
+    <h1>Création d'inscrit</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Crée" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('lecteur_index') }}">Back to the list</a>
+            <a href="{{ path('lecteur_index') }}">Retour</a>
         </li>
     </ul>
 {% endblock %}

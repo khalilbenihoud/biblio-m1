@@ -10,4 +10,22 @@ namespace BibliothequeBundle\Repository;
  */
 class LecteurRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    /*
+     * Fonction pour la recherche d'un inscrit par une partie de son nom
+     */
+    public function FindByNom($nom)
+    {
+            $queryBuilder = $this->createQueryBuilder('l');
+            $queryBuilder->where('l.nomLecteur LIKE :nom')
+                ->setParameter('nom', '%' . $nom . '%');
+
+            return $queryBuilder->getQuery()->getResult();
+    }
+
+
+
+
 }
+
