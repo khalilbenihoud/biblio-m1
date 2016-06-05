@@ -63,9 +63,6 @@ class PretController extends Controller
         return $this->render('BibliothequeBundle:Pret:listeLivreDispo.html.twig',array('livres'=>$livre));
     }
 
-
-
-    //*******************************Ajouter nouveau Pret*********************************************
     public function ajoutPretLivreAction(Request $request){
         $id=$request->query->get('id'); // on récupere id du livre et on la stock dans ID
         $emprunter = new Emprunter(); // on créé un objet emprunter pour y mettre dak le livre emprunté( qu'il ne soit plus disponible )
