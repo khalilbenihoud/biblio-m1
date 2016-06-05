@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1>Recherche inscrit</h1>
+            <form method="post" action="{{ path('recherchermot') }}">
+            <input type="text" id="" name="motchercher" class="form-control" placeholder="Rechercher..." required>
+             <button class="btn btn-default" type="submit">Rechercher</button>
+            </form>
+    {% if listeLecteurs and listeLecteurs != "vide" %}
+    </br></br>
+    <table>
+            <legend>Résultat de Recherche</legend>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                {% for listeLecteur in listeLecteurs %}
+
+                    <tr>
+
+                        <td>{{ listeLecteur.nomLecteur }}</td>
+                        <td>{{ listeLecteur.prenomLecteur }}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    {% elseif listeLecteurs != "vide" %}
+       </<br></br>
+        <h3> Aucun résultat trouvé !!</h3>
+      {% endif %}
+{% endblock %}

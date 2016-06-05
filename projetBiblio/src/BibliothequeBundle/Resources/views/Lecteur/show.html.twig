@@ -1,24 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lecteur</h1>
+    <h1>Inscrit</h1>
 
     <table>
         <tbody>
+
             <tr>
-                <th>Id</th>
-                <td>{{ lecteur.id }}</td>
-            </tr>
-            <tr>
-                <th>Nomlecteur</th>
+                <th>Nom</th>
                 <td>{{ lecteur.nomLecteur }}</td>
             </tr>
             <tr>
-                <th>Prenomlecteur</th>
+                <th>Prenom</th>
                 <td>{{ lecteur.prenomLecteur }}</td>
             </tr>
             <tr>
-                <th>Cyclelecteur</th>
+                <th>Cycle</th>
                 <td>{{ lecteur.cycleLecteur }}</td>
             </tr>
         </tbody>
@@ -26,10 +23,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('lecteur_index') }}">Back to the list</a>
+            <a href="{{ path('lecteur_index') }}">Retour</a>
         </li>
         <li>
-            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Edit</a>
+            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
