@@ -2,11 +2,15 @@
 
 namespace BibliothequeBundle\Controller;
 
+use Proxies\__CG__\BibliothequeBundle\Entity\Lecteur;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use BibliothequeBundle\Controller\PretController;
 use BibliothequeBundle\Entity\Reserver;
+use BibliothequeBundle\Entity\Emprunter;
 use BibliothequeBundle\Form\ReserverType;
+use BibliothequeBundle\Entity\ExemplaireRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Reserver controller.
@@ -115,16 +119,15 @@ class ReserverController extends Controller
 
     public function ajoutReservationLivreIndispoAction(Request $request){
 
-        $idLivre=$request->query->get('idLivre');
-        $id=$request->query->get('id');
+        $idLivre=$request->query->get('idLivre'); //id exemplaire à reservé
+        $id=$request->query->get('id');  // id de l'emprunt
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('BibliothequeBundle:Reserver');
         $e = $repository->findBy(array('livre'=>$idLivre));
         $repository = $em->getRepository('BibliothequeBundle:Emprunter');
         $emprunt = $repository->find($id);
-        $lecteur = $emprunt->getEmprunteur();
-        $q = new PretController();
-        $quota = $q.CheckQuotaLecteur($lecteur);
+        $ecteur = $emprunt->getEmprunteur();
+        $quota = $this->CheckQuotaLecteur($ecteur);
         if(!$e){
             $reserver = new Reserver();
             $repository = $em->getRepository('BibliothequeBundle:Exemplaire');
@@ -161,13 +164,31 @@ class ReserverController extends Controller
                     return $this->redirectToRoute('bibliotheque_pret_liste');
                 }
             }
-            return $this->render('BibliothequeBundle:Pret:ajoutReservationLivre.html.twig', array('form' => $form->createView()));
+            return $this->render('BibliothequeBundle:Reserver:ajoutReservationLivre.html.twig', array('form' => $form->createView()));
         }
         else{
             $request->getSession()->getFlashBag()->add('alerte', 'ce livre est deja réserver');
             return $this->redirectToRoute('bibliotheque_pret_liste');
         }
     }
+
+    /**
+     * fonction pour verifier si le lecteur peux encore faire un emprunt
+     */
+    public function CheckQuotaLecteur(Lecteur $lecteur)
+    {
+        $quota = true;
+        $cycleLecteur = $lecteur->getCycleLecteur();
+        $emprunter   = $lecteur->getEmprunter();
+        $nombreEmprunt = count($emprunter);
+        if($cycleLecteur==1){
+            if($nombreEmprunt>=5){
+                $quota=false;
+            }
+        }
+        return $quota;
+    }
+
     /**
      * Creates a form to delete a Reserver entity.
      *
