@@ -119,7 +119,6 @@ class PretController extends Controller
                     $entityManager->persist($emprunter);
                     $entityManager->flush();
                     $request->getSession()->getFlashBag()->add('notice', 'Le prêt a été enregistré avec succès pour '.' '.$lecteur->getNomLecteur().' '.$lecteur->getPrenomLecteur().'. ');
-                    //$request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
                     return $this->redirectToRoute('bibliotheque_pret_listeLivreDispo');
                 }
                 else{
@@ -130,7 +129,7 @@ class PretController extends Controller
                 }
             }
             else{
-                $request->getSession()->getFlashBag()->add('notice', 'ce livre est deja réserver');
+                $request->getSession()->getFlashBag()->add('notice', 'Le livre est déjà réservé');
             }
         }
         return $this->render('BibliothequeBundle:Pret:ajoutPretLivre.html.twig', array('form' => $form->createView()));

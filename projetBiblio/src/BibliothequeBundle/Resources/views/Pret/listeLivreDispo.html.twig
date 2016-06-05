@@ -5,12 +5,12 @@
         <div class="well">
             <div class="row">
                 {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div class="alert alert-success">
+                    <div>
                         {{ flashMessage }}
                     </div>
                 {% endfor %}
                 {% for flashMessage in app.session.flashbag.get('alerte') %}
-                    <div class="alert alert-danger">
+                    <div>
                         {{ flashMessage }}
                     </div>
                 {% endfor %}

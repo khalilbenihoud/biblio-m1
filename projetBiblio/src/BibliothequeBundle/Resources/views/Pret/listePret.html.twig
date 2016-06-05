@@ -36,8 +36,9 @@
                         <button type="submit">Valider</button>
                         <input type="hidden" name="s" id="s" value="Livre">
                     </form>
+        <br><br>
                 <table>
-                    <tr>
+                    <tr style="margin-top:20px;">
                         <th>Nom emprunteur</th>
                         <th>Prénom emprunteur</th>
                         <th>Livre emprunté</th>
@@ -45,7 +46,9 @@
                         <th>Date sortie</th>
                         <th>Date retour</th>
                         <th>Réserver / Retour</th>
+
                     </tr>
+
                     {% for emprunt in emprunter %}
                         <tr>
                             <td>{{ emprunt.emprunteur.nomLecteur }}</td>

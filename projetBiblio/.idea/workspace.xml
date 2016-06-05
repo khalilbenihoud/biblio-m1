@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="14b717fa-9535-44d8-9990-b0b7663ed4fc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Etagere.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Etagere.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Exemplaire.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Exemplaire.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Lecteur.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Lecteur.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Rayon.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Entity/Rayon.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Form/EmprunterType.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Form/EmprunterType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/EmprunterRepository.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/EmprunterRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/ExemplaireRepository.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/ExemplaireRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/LivreRepository.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Repository/LivreRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Default/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig" afterPath="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig" />
     </list>
     <ignored path="projetBiblio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,96 +27,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PretController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.375">
-              <caret line="120" column="115" selection-start-line="120" selection-start-column="115" selection-end-line="120" selection-end-column="115" />
-              <folding>
-                <element signature="e#140#180#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FaculteController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Controller/FaculteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="24.625">
-              <caret line="87" column="57" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Faculte.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Entity/Faculte.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="34.625">
-              <caret line="49" column="41" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lecteur.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Entity/Lecteur.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.375">
-              <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="230" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="listeLivreDispo.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.375">
-              <caret line="32" column="67" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="-8.208333">
+              <caret line="18" column="49" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listePret.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-45.0">
-              <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-              <folding>
-                <element signature="e#552#570#0#HTML" expanded="true" />
-                <element signature="e#774#792#0#HTML" expanded="true" />
-                <element signature="e#2217#2243#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0">
-              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LecteurRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmprunterRepository.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmprunterRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/EmprunterRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7150838">
+            <state vertical-scroll-proportion="-16.0">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding />
             </state>
@@ -141,6 +56,28 @@
                 <element signature="e#1520#1546#0#HTML" expanded="true" />
                 <element signature="e#1604#1651#0#HTML" expanded="true" />
                 <element signature="e#1686#1710#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ajoutPretLivre.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/ajoutPretLivre.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.0">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listePret.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.20670392">
+              <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+              <folding>
+                <element signature="e#1526#1550#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,14 +136,14 @@
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Repository/ExemplaireRepository.php" />
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig.html" />
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/ajoutPretLivre.html.twig" />
-        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/config/routing.yml" />
-        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig" />
-        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php" />
+        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig" />
+        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php" />
+        <option value="$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig" />
       </list>
     </option>
   </component>
@@ -644,7 +581,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1929182" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -652,7 +589,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55600816" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40020368" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40020368" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -950,14 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/ajoutPretLivre.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.0">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1002,30 +931,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.375">
-          <caret line="32" column="67" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6256983">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-45.0">
-          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-          <folding>
-            <element signature="e#552#570#0#HTML" expanded="true" />
-            <element signature="e#774#792#0#HTML" expanded="true" />
-            <element signature="e#2217#2243#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.31284916">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/EmprunterRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.0">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Controller/PretController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.375">
-          <caret line="120" column="115" selection-start-line="120" selection-start-column="115" selection-end-line="120" selection-end-column="115" />
+        <state vertical-scroll-proportion="1.698324">
+          <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
           <folding>
             <element signature="e#140#180#0#PHP" expanded="true" />
           </folding>
@@ -1034,49 +967,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Controller/FaculteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="24.625">
-          <caret line="87" column="57" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Entity/Lecteur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.375">
-          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="230" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.5083799">
+          <caret line="123" column="33" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Entity/Faculte.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="34.625">
-          <caret line="49" column="41" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="41" />
+        <state vertical-scroll-proportion="4.24581">
+          <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Entity/Lecteur.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+        <state vertical-scroll-proportion="2.1173184">
+          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="230" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/LecteurRepository.php">
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listeLivreDispo.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.208333">
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Repository/EmprunterRepository.php">
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/ajoutPretLivre.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7150838">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        <state vertical-scroll-proportion="-22.0">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BibliothequeBundle/Resources/views/Pret/listePret.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.20670392">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+          <folding>
+            <element signature="e#1526#1550#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
