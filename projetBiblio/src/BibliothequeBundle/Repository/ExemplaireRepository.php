@@ -18,4 +18,38 @@ class ExemplaireRepository extends \Doctrine\ORM\EntityRepository
             ->where('em.id IS NULL');
         return $livre->getQuery()->getResult();
     }
+	public function etagereTropPleine($idEtagere) {
+		$query = $this->getEntityManager()->createQueryBuilder('e')
+		->select('COUNT(e.id)')
+		->from('BibliothequeBundle:Exemplaire', 'e')
+		->where('e.etagere = :idEtagere')
+		->setParameter('idEtagere', $idEtagere);
+
+		$nbExemplaire = $query->getQuery()->getSingleScalarResult();
+
+		if ($nbExemplaire <= 100)
+			return false;
+		else
+			return true;
+	}
+
+	public function listeExemplaireInEtagere($idLivre, $idEtagere) {
+		$query = $this->getEntityManager()->createQueryBuilder('e')
+		->select('e')
+		->from('BibliothequeBundle:Exemplaire', 'e')
+		->where('e.livre = :idLivre')
+		->setParameter('idLivre', $idLivre)
+		->andWhere('e.etagere = :idEtagere')
+		->setParameter('idEtagere', $idEtagere);
+
+		return $query->getQuery()->getResult();
+	}
+
+	public function getNumEtagereMax(){
+		$query = $this->getEntityManager()->createQueryBuilder('e')
+		->select('max(e.numeroEtagere)')
+		->from('BibliothequeBundle:Etagere', 'e');
+
+		return $query->getQuery()->getSingleScalarResult();
+	}
 }

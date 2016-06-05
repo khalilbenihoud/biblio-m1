@@ -1,28 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Etagere list</h1>
+    <h1>Liste des étagères</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numeroetagere</th>
+                <th> </th>
+                <th>Numéro</th>
+                <th>Rayon</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for etagere in etageres %}
             <tr>
-                <td><a href="{{ path('etagere_show', { 'id': etagere.id }) }}">{{ etagere.id }}</a></td>
+                <td><a href="{{ path('etagere_show', { 'id': etagere.id }) }}"></a></td>
                 <td>{{ etagere.numeroEtagere }}</td>
+                <td>{{ etagere.rayon }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('etagere_show', { 'id': etagere.id }) }}">show</a>
+                            <a href="{{ path('etagere_show', { 'id': etagere.id }) }}">Afficher</a>
                         </li>
                         <li>
-                            <a href="{{ path('etagere_edit', { 'id': etagere.id }) }}">edit</a>
+                            <a href="{{ path('etagere_edit', { 'id': etagere.id }) }}">Editer</a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +33,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('etagere_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('etagere_new') }}">Ajouter une étagère</a>
 {% endblock %}

@@ -10,6 +10,8 @@ namespace BibliothequeBundle\Repository;
  */
 class LecteurRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
     /*
      * Fonction pour la recherche d'un inscrit par une partie de son nom
      */
@@ -22,4 +24,8 @@ class LecteurRepository extends \Doctrine\ORM\EntityRepository
             return $queryBuilder->getQuery()->getResult();
     }
 
+
+
+
 }
+

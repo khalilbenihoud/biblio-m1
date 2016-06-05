@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Exemplaires dans l'étagère dont le livre est {{ exemplaires[0].livre }} :</h1>
+
+    <table>
+        <tbody>
+        {% for exemplaire in exemplaires %}
+            <tr>
+                <td>Id exemplaire : {{ exemplaire.id }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('exemplaire_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

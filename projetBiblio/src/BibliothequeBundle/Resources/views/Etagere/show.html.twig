@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Etagere</h1>
+    <h1>Etagère</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Id : </th>
                 <td>{{ etagere.id }}</td>
             </tr>
             <tr>
-                <th>Numeroetagere</th>
+                <th>Numéro : </th>
                 <td>{{ etagere.numeroEtagere }}</td>
+            </tr>
+            <tr>
+                <th>Rayon : </th>
+                <td>{{ etagere.rayon }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('etagere_index') }}">Back to the list</a>
+            <a href="{{ path('etagere_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('etagere_edit', { 'id': etagere.id }) }}">Edit</a>
+            <a href="{{ path('etagere_edit', { 'id': etagere.id }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

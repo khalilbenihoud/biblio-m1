@@ -127,7 +127,18 @@ class Rayon
         return $this->theme_rayon;
     }
 
-    public function __toString(){
-        return $this->getDesignationRayon().'-'.$this->getThemeRayon();
+    public function __toString()
+    {
+        return '[D]'.$this->getDesignationRayon().' [T]'.$this->getThemeRayon();
+    }
+
+    public function getLivreRayon()
+    {
+        $etageres = $this->getEtageres();
+        echo '<pre>';print_r($etageres);echo '</pre>';
+        // $exemplaire = array();
+        // foreach ($etageres as $key => $value) {
+        //     $exemplaire[] = $value;
+        // }
     }
 }

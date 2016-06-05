@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Livres contenu dans le rayon "{{ rayon.designationRayon }}" de thème "{{ rayon.themeRayon }}"</h1>
+
+    <table>
+        <tbody>
+        {% for unLivre in livres %}
+            <tr>
+                <td><a href="{{ path('livre_show', { 'id': unLivre.getId }) }}">{{ unLivre.titreLivre }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rayon_show', { 'id': rayon.id }) }}">Retour à la page précédente</a>
+        </li>
+        <li>
+            <a href="{{ path('rayon_index') }}">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

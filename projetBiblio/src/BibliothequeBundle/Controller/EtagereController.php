@@ -103,11 +103,18 @@ class EtagereController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($etagere);
-            $em->flush();
-        }
+            $etagereRepository = $em->getRepository('BibliothequeBundle:Etagere');
+            $nbExemplaire = $etagereRepository->getNbExemplaire($etagere->getId());
 
-        return $this->redirectToRoute('etagere_index');
+            if($nbExemplaire != 0){
+                return $this->redirectToRoute('delete_error');
+            }
+            else{
+                $em->remove($etagere);
+                $em->flush();
+                return $this->redirectToRoute('etagere_index');
+            }
+        }
     }
 
     /**
@@ -124,5 +131,21 @@ class EtagereController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function testNbExemplaireAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $etagereRepository = $em->getRepository('BibliothequeBundle:Etagere');
+
+        $nbExemplaire = $etagereRepository->getNbExemplaire($id);
+
+        return $this->render('BibliothequeBundle:Etagere:nbExemplaire.html.twig', array(
+            'nbExemplaire' => $nbExemplaire,
+        ));
+    }
+
+    public function delErrorAction(){
+        return $this->render('BibliothequeBundle:Etagere:delError.html.twig');
     }
 }
