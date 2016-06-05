@@ -138,4 +138,5 @@ class Emprunter
     {
         return $this->emprunteur;
     }
+    //TODO: ajout toString
 }

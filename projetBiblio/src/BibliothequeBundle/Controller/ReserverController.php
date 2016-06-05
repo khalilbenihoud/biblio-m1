@@ -4,7 +4,7 @@ namespace BibliothequeBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use BibliothequeBundle\Controller\PretController;
 use BibliothequeBundle\Entity\Reserver;
 use BibliothequeBundle\Form\ReserverType;
 
@@ -109,7 +109,65 @@ class ReserverController extends Controller
 
         return $this->redirectToRoute('reserver_index');
     }
+    /**
+     * Réservation d'un livre indisponible appel dans la liste des emprunt
+     */
 
+    public function ajoutReservationLivreIndispoAction(Request $request){
+
+        $idLivre=$request->query->get('idLivre');
+        $id=$request->query->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('BibliothequeBundle:Reserver');
+        $e = $repository->findBy(array('livre'=>$idLivre));
+        $repository = $em->getRepository('BibliothequeBundle:Emprunter');
+        $emprunt = $repository->find($id);
+        $lecteur = $emprunt->getEmprunteur();
+        $q = new PretController();
+        $quota = $q.CheckQuotaLecteur($lecteur);
+        if(!$e){
+            $reserver = new Reserver();
+            $repository = $em->getRepository('BibliothequeBundle:Exemplaire');
+            $exemplaire = $repository->find($idLivre);
+            $form = $this->createFormBuilder($reserver)
+                ->add('lecteur', EntityType::class,
+                    array ('label' => 'Nom du Lecteur',
+                        'class' => 'BibliothequeBundle:Lecteur',
+                        'choice_label' => 'nomLecteur',
+                        'required' => true,
+                        'attr'=> array('class'=>'form-control'),
+                    ))
+                ->add('dateReservation',DateType::class,array('required' => false,
+                    'widget' =>'single_text',
+                    'format'=>'yyyy-MM-dd',
+                    'required' => true,
+                    'attr'=>array('class'=>'form-control'),
+                ))
+                ->getForm();
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                if($reserver->getDateReservation()>$emprunt->getDateFin() && $quota ){
+                    //vérification si la date de la réservation
+                    // dépasse la date de retoure et vérification du quota
+                    $reserver->setLivre($exemplaire);
+                    $entityManager->persist($reserver);
+                    $entityManager->flush();
+                    $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
+                    return $this->redirectToRoute('bibliotheque_pret_liste');
+                }
+                else{
+                    $request->getSession()->getFlashBag()->add('alerte', 'Réservation impossible.');
+                    return $this->redirectToRoute('bibliotheque_pret_liste');
+                }
+            }
+            return $this->render('BibliothequeBundle:Pret:ajoutReservationLivre.html.twig', array('form' => $form->createView()));
+        }
+        else{
+            $request->getSession()->getFlashBag()->add('alerte', 'ce livre est deja réserver');
+            return $this->redirectToRoute('bibliotheque_pret_liste');
+        }
+    }
     /**
      * Creates a form to delete a Reserver entity.
      *

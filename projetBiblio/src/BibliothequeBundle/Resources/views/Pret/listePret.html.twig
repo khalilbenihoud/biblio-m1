@@ -58,7 +58,7 @@
                             <td>{{ emprunt.dateDebut|date("d/m/Y") }}</td>
                             <td>{{ emprunt.dateFin|date("d/m/Y") }}</td>
                             <td>
-                                <a href="#"><button>Réserver</button></a>
+                                <a href="{{ path('reserver_ajoutReservationLivreIndispo', {'idLivre': emprunt.exemplaire.id, 'id': emprunt.id }) }}"><button>Réserver</button></a>
                                 <a href="#"><button>Retourner</button></a>
                             </td>
                         </tr>
