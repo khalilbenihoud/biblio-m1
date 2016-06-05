@@ -10,4 +10,24 @@ namespace BibliothequeBundle\Repository;
  */
 class LivreRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByPartieTitreLivre($mot){
+        $livre = $this->createQueryBuilder('l');
+        $livre->where('l.titreLivre LIKE :recherche')
+            ->setParameter('recherche', '%' . $mot . '%');
+        return $livre->getQuery()->getResult();
+    }
+    public function findByNomAuteur($mot){
+        $livre = $this->createQueryBuilder('l');
+        $livre->innerJoin('l.auteur','a')
+            ->where('a.nomAuteur LIKE :recherche')
+            ->setParameter('recherche', '%' . $mot . '%');
+        return $livre->getQuery()->getResult();
+    }
+    public function findByPartieTheme($mot){
+        $livre = $this->createQueryBuilder('l');
+        $livre->innerJoin('l.theme_livre','t')
+            ->where('t.descriptionTheme LIKE :recherche')
+            ->setParameter('recherche', '%' . $mot . '%');
+        return $livre->getQuery()->getResult();
+    }
 }

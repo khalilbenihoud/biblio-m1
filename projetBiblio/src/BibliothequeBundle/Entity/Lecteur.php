@@ -224,4 +224,9 @@ class Lecteur
     {
         return $this->faculte;
     }
+
+    public function __toString()
+    {
+        return $this->getNomLecteur().'-'.$this->getCycleLecteur();
+    }
 }

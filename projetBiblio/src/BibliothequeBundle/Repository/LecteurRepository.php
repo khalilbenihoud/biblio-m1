@@ -15,10 +15,11 @@ class LecteurRepository extends \Doctrine\ORM\EntityRepository
      */
     public function FindByNom($nom)
     {
-        $queryBuilder = $this->createQueryBuilder('l');
-        $queryBuilder->where('l.nomLecteur LIKE :nom')
-            ->setParameter('nom','%'.$nom.'%');
+            $queryBuilder = $this->createQueryBuilder('l');
+            $queryBuilder->where('l.nomLecteur LIKE :nom')
+                ->setParameter('nom', '%' . $nom . '%');
 
-        return $queryBuilder->getQuery()->getResult();
+            return $queryBuilder->getQuery()->getResult();
     }
+
 }

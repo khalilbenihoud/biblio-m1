@@ -195,4 +195,9 @@ class Exemplaire
     {
         return $this->etagere;
     }
+
+    public function __toString()
+    {
+        return $this->getLivre().'-'.$this->getEtagere();
+    }
 }

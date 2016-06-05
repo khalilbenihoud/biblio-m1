@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div  style="text-align:center;">
+        <a href="{{ path('bibliotheque_pret_liste') }}" style="color:mediumvioletred;font-weight:bold;">Agent au prêt</a>
+            <ul style="list-style:none;">
+                <a href="{{ path('bibliotheque_pret_liste') }}">Livres empruntés</a> | <a href="{{ path('bibliotheque_pret_listeLivreDispo') }}">Livres disponible</a> | <a href="#">Liste hors délais</a>
+            </ul>
+    </div>
+    {% block container %}{% endblock %}
+
+{% endblock %}
