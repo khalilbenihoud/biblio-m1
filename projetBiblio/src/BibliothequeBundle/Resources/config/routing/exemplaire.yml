@@ -32,3 +32,8 @@ exemplaire_livre_etagere:
     path:     /livre/{idLivre}/etagere/{idEtagere}
     defaults: { _controller: "BibliothequeBundle:Exemplaire:testListeExemplaireInEtagere" }
     methods:  [GET, POST]
+
+exemplaire_nb_exemplaire:
+    path:     /nbExemplaire/{idLivre}
+    defaults: { _controller: "BibliothequeBundle:Exemplaire:testNbExemplaire" }
+    methods:  [GET, POST]

@@ -52,4 +52,14 @@ class ExemplaireRepository extends \Doctrine\ORM\EntityRepository
 
 		return $query->getQuery()->getSingleScalarResult();
 	}
+
+	public function getNbExemplaire($idLivre){
+		$query = $this->getEntityManager()->createQueryBuilder('e')
+		->select('COUNT(e.id)')
+		->from('BibliothequeBundle:Exemplaire', 'e')
+		->where('e.livre = :idLivre')
+		->setParameter('idLivre', $idLivre);
+
+		return $query->getQuery()->getSingleScalarResult();
+	}
 }

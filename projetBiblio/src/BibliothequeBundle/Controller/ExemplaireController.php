@@ -43,63 +43,76 @@ class ExemplaireController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            //On récupère le theme du livre sélectionné
-            $themeL = $exemplaire->getLivre()->getThemeLivre();
-            foreach ($themeL as $value) {
-                $themeLivre = $value;
-            }
+            // On récupère l'id du livre sélectionné
+            $idLivre = $exemplaire->getLivre()->getId();
+            // On compte le nombre d'exemplaire de ce livre
+            $em = $this->getDoctrine()->getManager();
+            $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+            $nbExemplaire = $exemplaireRepository->getNbExemplaire($idLivre);
+            // On ajoute cet exemplaire si le nb d'exemplaire pour ce livre est < 100
+            if($nbExemplaire < 100) {
 
-            //On récupère le theme du rayon de l'étagère
-            $themeRayon = $exemplaire->getEtagere()->getRayon();
-            $themeRayon = explode(']', $themeRayon);
-            $themeRayon = $themeRayon[2];
-            
-            //On les compare afin de n'enregistrer un exemplaire que si le theme livre = theme rayon
-            if($themeLivre != $themeRayon){
-                $message =  "Votre exemplaire n'a pas été enregistré. <br />Veuillez vérifier que le thème de votre livre correspond au thème du rayon dans lequel votre étagère se situe.";
-                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/new">Retour au formulaire</a>';
-                return new Response("<html><body>$message</body></html>");
-            }
-            else{
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($exemplaire);
-                $em->flush();
-
-                //Si etagere trop pleine
-                $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
-                $idEtagere = $exemplaire->getEtagere()->getId();
-                $idLivre = $exemplaire->getLivre()->getId();
-                $etagereTropPleine = $exemplaireRepository->etagereTropPleine($idEtagere);
-
-                if($etagereTropPleine){
-                    // On créer une nouvelle étagère pour insérer les exemplaires
-                    $newEtagere = new Etagere;
-                    $newEtagere->setRayon($exemplaire->getEtagere()->getRayon());
-                    // Nouveau numeroEtagere car nouvelle étagère
-                    $numEtagereMax = $exemplaireRepository->getNumEtagereMax();
-                    $newEtagere->setNumeroEtagere($numEtagereMax+1);
-                    $em->persist($newEtagere);
-                    $em->flush();
-
-                    // On récupère les exemplaires de ce livre afin de les déplacer dans cette étagère
-                    $exemplairesLivre = $exemplaireRepository->listeExemplaireInEtagere($idLivre, $idEtagere);
-                    foreach ($exemplairesLivre as $exemp) {
-                        $newExemplaire = new Exemplaire;
-                        $newExemplaire->setLivre($exemp->getLivre());
-                        // Récupérer une étagère qui n'est pas trop pleine
-                        $newExemplaire->setEtagere($newEtagere);
-                        $newExemplaire->setNumeroExemplaire($exemp->getNumeroExemplaire());
-                        $em->persist($newExemplaire);
-                        $em->flush();
-                        $em->remove($exemp);
-                        $em->flush();
-                    }
-                    return $this->redirectToRoute('exemplaire_index');
+                //On récupère le theme du livre sélectionné
+                $themeL = $exemplaire->getLivre()->getThemeLivre();
+                foreach ($themeL as $value) {
+                    $themeLivre = $value;
                 }
 
-                return $this->redirectToRoute('exemplaire_show', 
-                            array('id' => $exemplaire->getId()));
+                //On récupère le theme du rayon de l'étagère
+                $themeRayon = $exemplaire->getEtagere()->getRayon();
+                $themeRayon = explode(']', $themeRayon);
+                $themeRayon = $themeRayon[2];
+                
+                //On les compare afin de n'enregistrer un exemplaire que si le theme livre = theme rayon
+                if($themeLivre != $themeRayon){
+                    $message =  "Votre exemplaire n'a pas été enregistré. <br />Veuillez vérifier que le thème de votre livre correspond au thème du rayon dans lequel votre étagère se situe.";
+                    $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/new">Retour au formulaire</a>';
+                    return new Response("<html><body>$message</body></html>");
+                }
+                else{
+                    $em->persist($exemplaire);
+                    $em->flush();
+
+                    //Si etagere trop pleine
+                    $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+                    $idEtagere = $exemplaire->getEtagere()->getId();
+                    $etagereTropPleine = $exemplaireRepository->etagereTropPleine($idEtagere);
+
+                    if($etagereTropPleine){
+                        // On créer une nouvelle étagère pour insérer les exemplaires
+                        $newEtagere = new Etagere;
+                        $newEtagere->setRayon($exemplaire->getEtagere()->getRayon());
+                        // Nouveau numeroEtagere car nouvelle étagère
+                        $numEtagereMax = $exemplaireRepository->getNumEtagereMax();
+                        $newEtagere->setNumeroEtagere($numEtagereMax+1);
+                        $em->persist($newEtagere);
+                        $em->flush();
+
+                        // On récupère les exemplaires de ce livre afin de les déplacer dans cette étagère
+                        $exemplairesLivre = $exemplaireRepository->listeExemplaireInEtagere($idLivre, $idEtagere);
+                        foreach ($exemplairesLivre as $exemp) {
+                            $newExemplaire = new Exemplaire;
+                            $newExemplaire->setLivre($exemp->getLivre());
+                            // Récupérer une étagère qui n'est pas trop pleine
+                            $newExemplaire->setEtagere($newEtagere);
+                            $newExemplaire->setNumeroExemplaire($exemp->getNumeroExemplaire());
+                            $em->persist($newExemplaire);
+                            $em->flush();
+                            $em->remove($exemp);
+                            $em->flush();
+                        }
+                        return $this->redirectToRoute('exemplaire_index');
+                    }
+
+                    return $this->redirectToRoute('exemplaire_show', 
+                                array('id' => $exemplaire->getId()));
+                }
+            }
+            else{
+                $message =  "Votre exemplaire n'a pas été enregistré. <br />Vous disposez déjà de 100 exemplaires pour ce livre.";
+                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/new">Retour au formulaire</a>';
+                $message .= '<br /><a href="http://127.0.0.1:8000/exemplaire/">Retour à la liste</a>';
+                return new Response("<html><body>$message</body></html>");
             }
         }
 
@@ -254,6 +267,18 @@ class ExemplaireController extends Controller
 
         return $this->render('BibliothequeBundle:Exemplaire:testListeExemplaireInEtagere.html.twig', array(
             'exemplaires' => $exemplaires,
+        ));
+    }
+
+    public function testNbExemplaireAction($idLivre)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exemplaireRepository = $em->getRepository('BibliothequeBundle:Exemplaire');
+
+        $nbExemplaire = $exemplaireRepository->getNbExemplaire($idLivre);
+
+        return $this->render('BibliothequeBundle:Exemplaire:testNbExemplaire.html.twig', array(
+            'nbExemplaire' => $nbExemplaire,
         ));
     }
 }
