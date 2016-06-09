@@ -21,7 +21,7 @@
                         <th>Titre de livre</th>
                         <th>Notice de livre</th>
                         <th>Numéro d'exemplaire </th>
-                        <th>Réserver/Prêter </th>
+                        <th>Prêter</th>
                     </tr>
                     {% for livre in livres %}
                         <tr>
@@ -29,7 +29,6 @@
                             <td>{{ livre.livre.noticeLivre }}</td>
                             <td>{{ livre.numeroExemplaire }}</td>
                             <td>
-                                <a href="#"><button>Réserver</button></a>
                                 <a href="{{ path('bibliotheque_pret_ajoutPretLivre', {'id': livre.id }) }}"><button>Prêter</button></a>
                             </td>
                         </tr>

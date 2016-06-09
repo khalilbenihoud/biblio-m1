@@ -180,7 +180,6 @@ class PretController extends Controller
         return $this->redirectToRoute('bibliotheque_pret_liste');
     }
 
-
     public function listeHorsDelaisAction(){
         $repository = $this->getDoctrine()->getManager()->getRepository('BibliothequeBundle:Emprunter');
         $emprunter = $repository->findByHorsDelais();
