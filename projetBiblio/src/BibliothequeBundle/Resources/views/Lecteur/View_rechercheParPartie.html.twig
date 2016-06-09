@@ -33,7 +33,8 @@
             </tbody>
         </table>
     {% elseif listeLecteurs != "vide" %}
-       </<br></br>
+       </br></br>
         <h3> Aucun résultat trouvé !!</h3>
       {% endif %}
+      <br /> <a href="{{ path('lecteur_index') }}">Retour</a>
 {% endblock %}

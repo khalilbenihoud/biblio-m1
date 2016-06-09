@@ -1,7 +1,7 @@
 <?php
 
 namespace BibliothequeBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Lecteur
  */
@@ -14,16 +14,22 @@ class Lecteur
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $nomLecteur;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $prenomLecteur;
 
     /**
      * @var int
+     * @Assert\Range(min = "1",
+     *               max = "3" ,
+     *               minMessage = "La valeur minimale du cycle est 1 ",
+     *               maxMessage = "La valeur maximale du cycle est de 3 ")
      */
     private $cycleLecteur;
 
@@ -121,6 +127,7 @@ class Lecteur
 
     /**
      * @var \BibliothequeBundle\Entity\Faculte
+     * @Assert\NotBlank()
      */
     private $faculte;
 
@@ -227,6 +234,6 @@ class Lecteur
 
     public function __toString()
     {
-        return $this->getNomLecteur().'-'.$this->getCycleLecteur();
+        return $this->getNomLecteur().'-'.$this->getCycleLecteur().'-'.$this->getFaculte();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace BibliothequeBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Faculte
  */
@@ -14,6 +14,7 @@ class Faculte
 
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $designationFaculte;
 
