@@ -10,31 +10,32 @@
     </br></br>
     <table>
             <legend>Résultat de Recherche</legend>
-            <thead>
-            <tr>
+
+            <tr style="background-color: #5B83AD">
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Actions</th>
             </tr>
-            </thead>
-            <tbody>
+
+
 
                 {% for listeLecteur in listeLecteurs %}
 
-                    <tr>
+                    <tr style="text-align: center; background-color: #e8e8e8">
 
-                        <td>{{ listeLecteur.nomLecteur }}</td>
-                        <td>{{ listeLecteur.prenomLecteur }}
-                        </td>
-
+                        <td style="padding: 5px;">{{ listeLecteur.nomLecteur }}</td>
+                        <td style="padding: 5px;">{{ listeLecteur.prenomLecteur }}</td >
+                        <td style="padding: 5px;"><a href="{{ path('situationpret', {'id': listeLecteur.id }) }}"><button>Situation</button></a>
+                        <a href="{{ path('lecteur_show', {'id': listeLecteur.id }) }}"><button>Afficher</button></a></td>
                     </tr>
                 {% endfor %}
 
 
-            </tbody>
+
         </table>
     {% elseif listeLecteurs != "vide" %}
        </br></br>
         <h3> Aucun résultat trouvé !!</h3>
       {% endif %}
-      <br /> <a href="{{ path('lecteur_index') }}">Retour</a>
+      <br /> <a href="{{ path('lecteur_index') }}"><button>Retour</button></a>
 {% endblock %}

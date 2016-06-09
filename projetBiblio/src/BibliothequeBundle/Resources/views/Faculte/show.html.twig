@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>détails de la Faculté</h1>
+    <h1>Détails de la Faculté</h1>
 
     <table>
-        <tbody>
 
-            <tr>
+
+            <tr style="background-color: #5B83AD">
                 <th>Designation de la faculté</th>
-                <td>{{ faculte.designationFaculte }}</td>
+                 <th>Actions</th>
             </tr>
-        </tbody>
+           <tr style="text-align: center; background-color: #e8e8e8">
+               <td style="padding: 5px;">{{ faculte.designationFaculte }}</td>
+               <td style="padding: 5px;">
+                   <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}"><button>Modifier</button></a>
+
+                   {{ form_start(delete_form) }}
+                   <input type="submit" value="Supprimer">
+                   {{ form_end(delete_form) }}
+               </td>
+           </tr>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('faculte_index') }}">Retour</a>
-        </li>
-        <li>
-            <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}">Modifier</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+            <a href="{{ path('faculte_index') }}"><button>Retour</button></a>
+
 {% endblock %}

@@ -15,7 +15,7 @@ class ReserverType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateReservation', 'datetime')
+            ->add('dateReservation')
             ->add('livre')
             ->add('lecteur')
         ;

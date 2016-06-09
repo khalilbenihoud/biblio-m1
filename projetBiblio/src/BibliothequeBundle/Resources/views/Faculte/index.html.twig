@@ -4,34 +4,31 @@
     <h1>Liste des Facultés</h1>
 
     <table>
-        <thead>
-            <tr>
+
+            <tr style="background-color: #5B83AD">
                 <th>Designation faculté</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+
+
         {% for faculte in facultes %}
-            <tr>
-                <td>{{ faculte.designationFaculte }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('faculte_show', { 'id': faculte.id }) }}">Afficher</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}">Modifier</a>
-                        </li>
-                    </ul>
+            <tr style="text-align: center; background-color: #e8e8e8">
+                <td  style="padding: 5px;">{{ faculte.designationFaculte }}</td>
+                <td  style="padding: 5px;">
+
+                            <a href="{{ path('faculte_show', { 'id': faculte.id }) }}"><button>Afficher</button></a>
+
+                            <a href="{{ path('faculte_edit', { 'id': faculte.id }) }}"><button>Modifier</button></a>
+
                 </td>
             </tr>
         {% endfor %}
-        </tbody>
+
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('faculte_new') }}">Créer une nouvelle faculté</a>
-        </li>
-    </ul>
+    </br>
+
+            <a href="{{ path('faculte_new') }}"><button>Créer une nouvelle faculté</button></a>
+
+
 {% endblock %}

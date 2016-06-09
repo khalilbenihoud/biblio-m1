@@ -4,38 +4,31 @@
     <h1>Inscrit</h1>
 
     <table>
-        <tbody>
 
-            <tr>
+
+            <tr style="background-color: #5B83AD">
                 <th>Nom</th>
-                <td>{{ lecteur.nomLecteur }}</td>
-            </tr>
-            <tr>
                 <th>Prenom</th>
-                <td>{{ lecteur.prenomLecteur }}</td>
-            </tr>
-            <tr>
                 <th>Cycle</th>
-                <td>{{ lecteur.cycleLecteur }}</td>
-            </tr>
-            <tr>
                 <th>Faculté</th>
-                <td>{{ lecteur.faculte }}</td>
+
             </tr>
-        </tbody>
+            <tr style="text-align: center; background-color: #e8e8e8">
+                <td style="padding: 5px;">{{ lecteur.nomLecteur }}</td>
+                <td style="padding: 5px;">{{ lecteur.prenomLecteur }}</td>
+                <td style="padding: 5px;">{{ lecteur.cycleLecteur }}</td>
+                <td style="padding: 5px;">{{ lecteur.faculte }}</td>
+            </tr>
+
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('lecteur_index') }}">Retour</a>
-        </li>
-        <li>
-            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Modifier</a>
-        </li>
-        <li>
+
+            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}"><button>Modifier</button></a>
+
+
             {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+            <a href="{{ path('lecteur_index') }}"><button>Retour</button></a>
 {% endblock %}

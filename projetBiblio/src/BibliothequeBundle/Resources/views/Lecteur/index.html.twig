@@ -5,41 +5,39 @@
     <h1>Liste Des inscrits</h1>
 
     <table>
-        <thead>
-            <tr>
+
+            <tr style="background-color: #5B83AD">
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Cycle</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+
+
         {% for lecteur in lecteurs %}
-            <tr>
-                <td>{{ lecteur.nomLecteur }}</td>
-                <td>{{ lecteur.prenomLecteur }}</td>
-                <td>{{ lecteur.cycleLecteur }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('lecteur_show', { 'id': lecteur.id }) }}">Afficher</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}">Modifier</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('situationpret', {'id': lecteur.id }) }}">Situation</a>
-                        </li>
-                    </ul>
+            <tr style="text-align: center; background-color: #e8e8e8">
+                <td style="padding: 5px;">{{ lecteur.nomLecteur }}</td>
+                <td style="padding: 5px;">{{ lecteur.prenomLecteur }}</td>
+                <td style="padding: 5px;">{{ lecteur.cycleLecteur }}</td>
+                <td style="padding: 5px;">
+
+
+                            <a href="{{ path('lecteur_show', { 'id': lecteur.id }) }}"><button>Afficher</button></a>
+
+
+                            <a href="{{ path('lecteur_edit', { 'id': lecteur.id }) }}"><button>Modifier</button></a>
+
+
+                            <a href="{{ path('situationpret', {'id': lecteur.id }) }}"><button>Situation</button></a>
+
+
                 </td>
             </tr>
         {% endfor %}
-        </tbody>
+
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('lecteur_new') }}">Créer un nouveau inscrit</a>
-        </li>
-    </ul>
+    <br><br>
+            <a href="{{ path('lecteur_new') }}"><button>Créer un nouveau inscrit</button></a>
+
 {% endblock %}

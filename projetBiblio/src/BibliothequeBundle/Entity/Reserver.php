@@ -109,6 +109,10 @@ class Reserver
     {
         return $this->lecteur;
     }
-//TODO: ajout toString
+    public function __toString()
+    {
+        return 'réservation : Livre '.$this->getLivre().' - Date réservation :'.$this->getDateReservation()
+            .' - Inscrit :'.$this->getLecteur();
+    }
 }
 

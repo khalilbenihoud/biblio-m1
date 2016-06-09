@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Reserver creation</h1>
+    <h1>Creation de réservation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Créer" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('reserver_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+
+            <a href="{{ path('reserver_index') }}"><button>Retour</button></a>
+
 {% endblock %}
